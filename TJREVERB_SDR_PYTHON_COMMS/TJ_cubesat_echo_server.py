@@ -17,10 +17,10 @@ while startup == 0:
             print "invalid port number"
     elif len(sys.argv) == 1:
         print("BTW, you can enter the port # as an argument")
-        port_num = raw_input("port number(5500-5599)>>")
+        port_num = int(raw_input("port number(5500-5599)>>"))
         if (port_num>=5500 and port_num<=5599):
             startup = 1
-            print("you need a (valid) port number (5500-5599)")
+            print("valid port number (5500-5599)")
         else:
             print "invalid port number"
             type(port_num)
