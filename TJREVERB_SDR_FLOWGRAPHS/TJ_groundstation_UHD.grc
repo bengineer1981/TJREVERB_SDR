@@ -93,7 +93,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 572)</value>
+      <value>(40, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -120,7 +120,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 500)</value>
+      <value>(40, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -147,7 +147,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 452)</value>
+      <value>(784, 500)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -264,7 +264,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 340)</value>
+      <value>(32, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -457,7 +457,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 532)</value>
+      <value>(1024, 580)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -516,7 +516,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 660)</value>
+      <value>(792, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -570,7 +570,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 660)</value>
+      <value>(680, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -597,7 +597,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 660)</value>
+      <value>(120, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -624,7 +624,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 860)</value>
+      <value>(992, 908)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -705,7 +705,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(872, 660)</value>
+      <value>(872, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -807,7 +807,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 580)</value>
+      <value>(472, 628)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -854,7 +854,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 756)</value>
+      <value>(168, 804)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -945,6 +945,53 @@
     </param>
   </block>
   <block>
+    <key>audio_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>device_name</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(464, 332)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>audio_sink_0</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>ok_to_block</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>audio_rate</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_message_debug</key>
     <param>
       <key>alias</key>
@@ -964,7 +1011,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 344)</value>
+      <value>(664, 456)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1046,7 +1093,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 372)</value>
+      <value>(344, 372)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1105,7 +1152,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 580)</value>
+      <value>(696, 628)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1160,7 +1207,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 496)</value>
+      <value>(456, 544)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1211,7 +1258,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 516)</value>
+      <value>(696, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1325,7 +1372,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 380)</value>
+      <value>(32, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1384,7 +1431,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 484)</value>
+      <value>(184, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1439,7 +1486,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 588)</value>
+      <value>(184, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1498,7 +1545,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 732)</value>
+      <value>(704, 780)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1884,7 +1931,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 700)</value>
+      <value>(384, 748)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2171,7 +2218,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 868)</value>
+      <value>(184, 916)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2897,7 +2944,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 812)</value>
+      <value>(384, 860)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3497,7 +3544,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 340)</value>
+      <value>(160, 372)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3528,7 +3575,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 388)</value>
+      <value>(160, 420)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5550,7 +5597,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 748)</value>
+      <value>(944, 796)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5743,6 +5790,12 @@
   </connection>
   <connection>
     <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
+    <sink_block_id>audio_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -5769,7 +5822,7 @@
     <source_block_id>blocks_tagged_stream_to_pdu_1_0</source_block_id>
     <sink_block_id>blocks_message_debug_0_1_0</sink_block_id>
     <source_key>pdus</source_key>
-    <sink_key>print_pdu</sink_key>
+    <sink_key>print</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_tagged_stream_to_pdu_1_0</source_block_id>
