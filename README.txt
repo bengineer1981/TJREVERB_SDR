@@ -65,18 +65,41 @@ endif ()
 -----------------------------------------------------------------
 
 GENERAL USAGE/OPERATING INSTRUCTIONS
--make the python scripts executable by running
-sudo chmod +x 
--launch GNURadio Companion (GRC)
--open one of the flowgraphs
--run the 
 This project contains 6 main applications (4 gnuradio flowgraphs
 and 2 python scripts). The python GROUNDSTATION MESSENGER is the
-endpoint UI at the groundstation used to send messages to the
-cubesat.
-The python CUBESAT ECHO SERVER sends the message back to the 
-GROUNDSTATION MESSENGER which displays the acknowledgement
-to confirm the RF path was successful.
+endpoint UI at the groundstation used to send messages through GNURadio
+to the cubesat.
+The python CUBESAT ECHO SERVER receives the message from the 
+GROUNDSTATION MESSENGER and sends the message through GNURadio
+and back to the GROUNDSTATION MESSENGER which displays the acknowledgement
+confirming the RF/simulation path was successful. (Diagrams below)
+
+
+If you run one of the simulation flowgraphs, you need to use
+the GROUNDSTATION MESSENGER and the CUBESAT ECHO SERVER
+on the same machine. The UHD simulation flowgraph requires
+2 SDR radios, but the 'no radio' flowgraph doesn't require any
+hardware.
+If you run the cubesat UHD or groundstation UHD flowgraphs,
+you will need one SDR.
+
+
+To run the applications:
+-make the python scripts executable by running
+ sudo chmod +x scriptname1 scriptname2
+-launch GNURadio Companion (GRC)
+-open one of the flowgraphs
+-look at the socket PDU block(s) and note the port numbers
+-enter them as the follows:
+ TCP server port --> GROUNDSTATION MESSENGER
+ TCP client port --> CUBESAT ECHO SERVER
+-depending on the flowgraph, run one or both of the python scripts
+ and launch the gnuradio flowgraph. If you are using the 
+ CUBESAT ECHO SERVER you should see the server connect to the 
+ flowgraph.
+-typing a message in the GROUNDSTATION MESSENGER will send
+ a message through GNURadio and wait for a return message from the
+ CUBESAT ECHO SERVER
 
 The operational flow is as follows:
 When using GROUNDSTATION/CUBESAT SIMULATOR UHD
@@ -143,6 +166,7 @@ CUBESAT ECHO SERVER
  V
 PC#1
 
+
 When using GROUNDSTATION UHD and CUBESAT UHD with 2 separate computers
 PC#1
  ^
@@ -179,10 +203,10 @@ CUBESAT ECHO SERVER
 PC#2
 
 
-
 PHYSICAL SETUPS
 You can use any SDR's, but the example below is for the Ettus B-series
-USRP radios. (tested with a B205mini-i and B210)
+USRP radios. (tested with a B205mini-i and B210) If using different
+hardware, the appropriate sources and sinks will be necessary.
 
 PHYSICAL SETUP WHEN USING GROUNDSTATION/CUBESAT SIMULATOR UHD
 This is run on one PC.
