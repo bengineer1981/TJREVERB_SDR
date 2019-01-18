@@ -3,16 +3,35 @@ GNURadio flowgraphs and associated python scripts for the TJREVERB cubesat proje
 Contained in this repo are combined to create the following general programs
 
 GROUNDSTATION UHD
+Over the air Ground Station portion of the 
+Telemetry & Command link. Requires Ettus Research 
+UHD compatible SDR, but can be modified to
+use any SDR hardware by replacing the UHD
+source/sink blocks with the appropriate hardware
+blocks for the replacement radio. Radio must have
+transmit and receive capability.
 -gnuradio flowgraph
 -python groundstation messenger (tcp client)
 -python groundstation messenger (udp client) *future*
 
 CUBESAT UHD
+Over the air Cubesat portion of the 
+Telemetry & Command link. Used for emulating 
+Cubesat for groundstation testing. Requires 
+Ettus Research UHD compatible SDR, but can 
+be modified to use any SDR hardware by replacing 
+the UHD source/sink blocks with the appropriate 
+hardware blocks for the replacement radio. Radio 
+must have transmit and receive capability.
 -gnuradio flowgraph
 -python cubesat echo server (tcp server)
 -python cubesat echo server (udp server) *future*
 
 GROUNDSTATION/CUBESAT SIMULATOR UHD
+Complete Telemetry & Command simulator that
+uses hardware connected with cables and 
+attenuators. Used to ensure compatibility
+of hardware and software.
 -gnuradio flowgraph
 -python groundstation messenger (tcp client)
 -python cubesat echo server (tcp server)
@@ -20,6 +39,14 @@ GROUNDSTATION/CUBESAT SIMULATOR UHD
 -python cubesat echo server (udp server) *future*
 
 GROUNDSTATION/CUBESAT SIMULATOR NO RADIO
+Complete Telemetry & Command simulator that
+can be run with only GNURadio,the out-of-tree
+blocks (included in this repo) and the two 
+included python scripts. This is meant for
+development of primarily the GNURadio Companion
+GUI and the two python scripts with focus on
+user input and command parameters (message length,
+format, structure,etc.)
 -gnuradio flowgraph
 -python groundstation messenger (tcp client)
 -python cubesat echo server (tcp server)
@@ -39,23 +66,41 @@ DEPENDENCIES (pybombs is recommended for gnuradio see below instructions)
     apt-get or equivalent pkg manager
 
 INSTALLATION NOTES
-clone this repository to your home directory
-Recommended installation for gnuradio and gr-ax25 is PYBOMBS
-pybombs instructions are here: https://www.gnuradio.org/blog/2016-06-19-pybombs-the-what-the-how-and-the-why/
-pybobms install gnuradio (covered in link above)
-pybombs install gr-ax25
-install gr-bruninga*
-follow the normal build proceedure for gr-bruninga:
-cd gr-bruninga
-mkdir build 
-cd build
-cmake ..
-make
-make install
+1)clone this repository to your home directory
+    Recommended installation for gnuradio and gr-ax25 is PYBOMBS
+    pybombs instructions are here: https://www.gnuradio.org/blog/2016-06-19-pybombs-the-what-the-how-and-the-why/
+2) from the link above, install gnuradio via pybombs
+3) run "pybombs install gr-ax25" (you can also build from source, see note below)
+4) install gr-bruninga from source (see note below)
+    follow the normal build proceedure for gr-bruninga:
+    cd gr-bruninga
+    mkdir build 
+    cd build
+    cmake .. (see note below)
+    make
+    make install
 
-*gr-bruninga is in the "DEPENDENCIES_OOT_BLOCKS" directory
-and has been modified to work with pybombs by doing the following:
-edited CMakeLists.txt after the line that says "cmake_minimum_required(VERSION 3.0)"
+5) open gnuradio companion and from the file menu, navigate to
+    gr-ax25/apps/ and open the file called "detectmarkspace.grc"
+    in gnuradio companion, click 'run-->generate'. This will generate
+    a necessary block needed for this project.
+6) Open any of the flowgraphs to confirm that there are no missing blocks,
+    recommend starting with either the TJ_groundstation_UHD or TJ_cubesat_UHD.
+    This is mostly to confirm that you have properly configured the out of tree blocks.
+7) You're setup should be complete now. You can proceed to the 
+
+INSTALLATION NOTES MENTIONED ABOVE:
+*gr-ax25 if you get an error building gr-ax25 that says it's missing swig,
+it can be installed via apt-get  
+
+*gr-bruninga: a modified verstion of this block is in the "DEPENDENCIES_OOT_BLOCKS" 
+directory in this repo. It has been modified to compile into a pybombs environment.
+If you intend on using gr-bruninga in a pybombs environment and choose to clone the
+source from the gr-bruninga git repo instead of using the one included in this repo,
+ you will need to make the modification yourself by inserting the following lines
+into CMakeLists.txt:
+(after the line that says "cmake_minimum_required(VERSION 3.0)")
+
 -----------------------------------------------------------------
 #install to PyBOMBS target prefix if defined
 if (DEFINED ENV{PYBOMBS_PREFIX})
@@ -63,6 +108,10 @@ if (DEFINED ENV{PYBOMBS_PREFIX})
        message(STATUS "PyBOMBS installed GNU Radio. Setting CMAKE_INSTALL_PREFIX to $ENV{PYBOMBS_PREFIX}")
 endif ()
 -----------------------------------------------------------------
+
+*cmake: if running "cmake .." doesn't work, try "cmake -DCMAKE_INSTALL_PREFIX=/usr .."
+    this is especially relevant if you installed gnuradio via apt-get
+
 
 GENERAL USAGE/OPERATING INSTRUCTIONS
 This project contains 6 main applications (4 gnuradio flowgraphs
@@ -76,7 +125,7 @@ confirming the RF/simulation path was successful. (Diagrams below)
 
 
 If you run one of the simulation flowgraphs, you need to use
-the GROUNDSTATION MESSENGER and the CUBESAT ECHO SERVER
+the GROUNDSTATION MESSENGER and the CUBESAT ECHO SERVER python scripts
 on the same machine. The UHD simulation flowgraph requires
 2 SDR radios, but the 'no radio' flowgraph doesn't require any
 hardware.

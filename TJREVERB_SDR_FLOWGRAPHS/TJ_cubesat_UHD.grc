@@ -253,6 +253,34 @@
     </param>
   </block>
   <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value>echo server is default set to localhost ip addr
+can be changed in TJ_cubesat_echo_server.py</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1296, 460)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>echo_server_port</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>str(5598)</value>
+    </param>
+  </block>
+  <block>
     <key>variable_qtgui_range</key>
     <param>
       <key>comment</key>
@@ -1094,7 +1122,7 @@
     </param>
     <param>
       <key>port</key>
-      <value>str(5598)</value>
+      <value>echo_server_port</value>
     </param>
     <param>
       <key>tcp_no_delay</key>
