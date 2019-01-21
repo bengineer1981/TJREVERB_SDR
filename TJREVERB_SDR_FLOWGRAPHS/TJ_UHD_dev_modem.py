@@ -5,7 +5,7 @@
 # Title: TJ Dev Modem
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Thu Jan 17 21:11:17 2019
+# Generated: Fri Jan 18 12:33:54 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -75,7 +75,7 @@ class TJ_UHD_dev_modem(gr.top_block, Qt.QWidget):
         ##################################################
         self.interp = interp = 4
         self.hdr_len = hdr_len = 67
-        self.freq_chooser = freq_chooser = 144.39e6
+        self.freq_chooser = freq_chooser = 137.62e6
         self.audio_rate = audio_rate = 48000
         self.tx_gain = tx_gain = 10
         self.tail_len = tail_len = 2
@@ -522,8 +522,8 @@ class TJ_UHD_dev_modem(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.msg_connect((self.blocks_socket_pdu_0, 'pdus'), (self.bruninga_str_to_aprs_0, 'in'))
-        self.msg_connect((self.blocks_tagged_stream_to_pdu_1_0, 'pdus'), (self.blocks_message_debug_0_1_0, 'print'))
         self.msg_connect((self.blocks_tagged_stream_to_pdu_1_0, 'pdus'), (self.blocks_socket_pdu_0, 'pdus'))
+        self.msg_connect((self.bruninga_str_to_aprs_0, 'out'), (self.blocks_message_debug_0_1_0, 'print'))
         self.msg_connect((self.bruninga_str_to_aprs_0, 'out'), (self.bruninga_ax25_fsk_mod_0, 'in'))
         self.connect((self.afsk_ax25decode_1_0, 0), (self.blocks_stream_to_tagged_stream_0_0, 0))
         self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_0_0_0, 0))
