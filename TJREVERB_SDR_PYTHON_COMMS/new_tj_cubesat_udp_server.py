@@ -3,13 +3,13 @@ import sys
 import socket
 import time
 UDP_IP = "127.0.0.1"
-
+print "UDP target IP:", UDP_IP
 startup = 0
 while startup == 0:
-    if len(sys.argv) >= 2:
+    if len(sys.argv) > 2:
         RX_PORT = int(sys.argv[1])
         TX_PORT = int(sys.argv[2])
-        if (RX_PORT>=5500 and RX_PORT<=5599):
+        if (RX_PORT>=5500 and RX_PORT<=5599) and (TX_PORT>=5500 and TX_PORT<=5599):
             startup = 1
             print "valid port numbers RX:%d TX:%d" % (RX_PORT,TX_PORT)
         else:
@@ -17,8 +17,9 @@ while startup == 0:
             print "invalid port number"
     elif len(sys.argv) == 1:
         print("BTW, you can enter the RX and TX port #'s as arguments")
-        RX_PORT = int(raw_input("port number(5500-5599)>>"))
-        if (RX_PORT>=5500 and RX_PORT<=5599):
+        RX_PORT = int(raw_input("enter RX port number(5500-5599)>>"))
+        TX_PORT = int(raw_input("enter TX port number(5500-5599)>>"))
+        if (RX_PORT>=5500 and RX_PORT<=5599) and (TX_PORT>=5500 and TX_PORT<=5599):
             startup = 1
             print("valid port number (5500-5599)")
         else:
@@ -27,15 +28,15 @@ while startup == 0:
     else:
         print("you need a (valid) port number (5500-5599)")
         startup = 0
-    
 initial = 1
 exit = 0
 print "%"*80+"\n"+"%"*80
 print "WELCOME TO TJ REVERB CUBESAT MESSAGE SERVER"
-
 print "UDP target IP:", UDP_IP
-print "UDP target port:", RX_PORT
-    
+print "UDP RX port:", RX_PORT
+print "UDP TX port:", TX_PORT
+
+#BUILD RX SOCKET
 msg_lstn = socket.socket(socket.AF_INET, # Internet
                     socket.SOCK_DGRAM) # UDP
 msg_lstn.bind((UDP_IP, RX_PORT))
@@ -45,43 +46,41 @@ while True:
     while msg_rxd==0:
         msg, addr = msg_lstn.recvfrom(1024) # buffer size is 1024 bytes
         print "%"*80+"\n"+"%"*80
-        print "Complete Received Message:\n", msg
+        print "Complete Received Message from Groundstation:\n", msg
         print "%"*80+"\n"+"%"*80
-        print "stripping header"
-        scan_len = 6
+        print "begin delimiter search"
+        delimiter = "pid=F0"
+        scan_len = len(delimiter)
         start = 0        
         stop = start+scan_len
         if msg:
             msg_rxd = 1      
-        for char in msg:
-            if msg[start:stop] == "pid=F0":
-                if "\n" in msg:
-                    msg.replace("\n","")
-                else:
-                    continue
-                print "found 'pid=F0'"
+        for char in msg:#scan through message and find end of APRS header
+            if msg[start:stop] == delimiter:
+                print "found delimiter: %s" % delimiter
                 print "%"*80+"\n"+"%"*80
-                print "extracted message:%s" % msg[start+scan_len:len(msg)]
+                print "extracted message from groundstation:%s" % msg[start+scan_len:len(msg)]
                 print "%"*80+"\n"+"%"*80
-                if msg == "hello_tj":
-                    msg_back = "hello_groundstation_my_time_is:%s" % strftime("%a%d%b%Y%H:%M:%S", gmtime())
+                if "hello_tj" in msg:
+                    msg_back = "hello_groundstation_my_time_is:%s" % time.strftime("%a%d%b%Y%H:%M:%S", time.gmtime())
                     break
-                elif msg == "get_time":
-                    msg_back = strftime("%a%d%b%Y%H:%M:%S", gmtime())    
+                elif "get_sat_time" in msg:
+                    msg_back = time.strftime("%a%d%b%Y%H:%M:%S", time.gmtime())    
                     break
-                elif msg == "noop":
+                elif "noop" in msg:
                     msg_back = "noop"
-                else:
+                    break
+                else:#no set message, just send back whatever was rx'd 
                     msg_back = msg[start+scan_len:len(msg)]
                     break
             else:
+                print "no delimiter found yet"
                 start+=1
                 stop+=1
-
     print "UDP target port:", TX_PORT
     msg_snd = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
     msg_snd.sendto(msg_back, (UDP_IP, TX_PORT))
-    print "echo sent"
-    msg_rxd = 0
-    msg = False
+    print "echo '%s' sent" % msg_back
+    msg_rxd = 0#reset flag to listen for more messages
+    msg = False#reset msg value for 'if msg' condition
