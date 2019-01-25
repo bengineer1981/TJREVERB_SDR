@@ -30,7 +30,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 8)</value>
+      <value>(0, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_UHD_dev_modem</value>
+      <value>TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -175,7 +175,8 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>this should be the IP address of the cubesat's
+IP interface, not the localhost</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -195,7 +196,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"127.0.0.1"</value>
+      <value>"10.0.0.54"</value>
     </param>
   </block>
   <block>
@@ -222,7 +223,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"5555"</value>
+      <value>"5559"</value>
     </param>
   </block>
   <block>
@@ -249,7 +250,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"5556"</value>
+      <value>"5560"</value>
     </param>
   </block>
   <block>
@@ -276,7 +277,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"5557"</value>
+      <value>"5561"</value>
     </param>
   </block>
   <block>
@@ -303,7 +304,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"5558"</value>
+      <value>"5562"</value>
     </param>
   </block>
   <block>
@@ -385,7 +386,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(200, 228)</value>
+      <value>(168, 228)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -641,7 +642,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2612,7 +2613,7 @@
     <key>xmlrpc_client</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>cubesat_ip_addr</value>
     </param>
     <param>
       <key>alias</key>
@@ -2655,7 +2656,7 @@
     <key>xmlrpc_client</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>cubesat_ip_addr</value>
     </param>
     <param>
       <key>alias</key>
@@ -2698,7 +2699,7 @@
     <key>xmlrpc_client</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>cubesat_ip_addr</value>
     </param>
     <param>
       <key>alias</key>
@@ -2741,7 +2742,7 @@
     <key>xmlrpc_client</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>cubesat_ip_addr</value>
     </param>
     <param>
       <key>alias</key>

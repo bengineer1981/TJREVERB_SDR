@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 132)</value>
+      <value>(688, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 140)</value>
+      <value>(200, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -223,7 +223,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 260)</value>
+      <value>(192, 276)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -322,7 +322,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 140)</value>
+      <value>(536, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -385,7 +385,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 140)</value>
+      <value>(376, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -448,7 +448,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 324)</value>
+      <value>(8, 148)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -563,7 +563,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 36)</value>
+      <value>(872, 36)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -582,136 +582,7 @@
     <key>xmlrpc_client</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>callback</key>
-      <value>set_gain</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(520, 36)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>xmlrpc_client1</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>1234</value>
-    </param>
-    <param>
-      <key>variable</key>
-      <value>gain</value>
-    </param>
-  </block>
-  <block>
-    <key>xmlrpc_client</key>
-    <param>
-      <key>addr</key>
-      <value>localhost</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>callback</key>
-      <value>set_tx_gain</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(384, 36)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>xmlrpc_client1_0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>1234</value>
-    </param>
-    <param>
-      <key>variable</key>
-      <value>tx_gain</value>
-    </param>
-  </block>
-  <block>
-    <key>xmlrpc_client</key>
-    <param>
-      <key>addr</key>
-      <value>localhost</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>callback</key>
-      <value>set_freq</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(224, 36)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>xmlrpc_client1_0_0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>1234</value>
-    </param>
-    <param>
-      <key>variable</key>
-      <value>freq</value>
-    </param>
-  </block>
-  <block>
-    <key>xmlrpc_client</key>
-    <param>
-      <key>addr</key>
-      <value>localhost</value>
+      <value>cubesat_ip_addr</value>
     </param>
     <param>
       <key>alias</key>
@@ -731,7 +602,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 36)</value>
+      <value>(672, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -739,7 +610,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>xmlrpc_client1_0_0_0</value>
+      <value>xmlrpc_client1_0_0_0_0</value>
     </param>
     <param>
       <key>port</key>
@@ -748,6 +619,135 @@
     <param>
       <key>variable</key>
       <value>audio_line_driver</value>
+    </param>
+  </block>
+  <block>
+    <key>xmlrpc_client</key>
+    <param>
+      <key>addr</key>
+      <value>cubesat_ip_addr</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>callback</key>
+      <value>set_freq</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(200, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>xmlrpc_client1_0_0_1</value>
+    </param>
+    <param>
+      <key>port</key>
+      <value>1234</value>
+    </param>
+    <param>
+      <key>variable</key>
+      <value>freq</value>
+    </param>
+  </block>
+  <block>
+    <key>xmlrpc_client</key>
+    <param>
+      <key>addr</key>
+      <value>cubesat_ip_addr</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>callback</key>
+      <value>set_tx_gain</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(360, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>xmlrpc_client1_0_1</value>
+    </param>
+    <param>
+      <key>port</key>
+      <value>1234</value>
+    </param>
+    <param>
+      <key>variable</key>
+      <value>tx_gain</value>
+    </param>
+  </block>
+  <block>
+    <key>xmlrpc_client</key>
+    <param>
+      <key>addr</key>
+      <value>cubesat_ip_addr</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>callback</key>
+      <value>set_gain</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(520, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>xmlrpc_client1_1</value>
+    </param>
+    <param>
+      <key>port</key>
+      <value>1234</value>
+    </param>
+    <param>
+      <key>variable</key>
+      <value>gain</value>
     </param>
   </block>
 </flow_graph>

@@ -3,13 +3,40 @@ import sys
 import socket
 
 UDP_IP = "127.0.0.1"
-TX_PORT = 5555
 print "UDP target IP:", UDP_IP
-print "UDP TX Port:", TX_PORT
 
+startup = 0
+while startup == 0:
+    if len(sys.argv) >= 2:
+        TX_PORT = int(sys.argv[1])
+        RX_PORT = int(sys.argv[2])
+        if (TX_PORT>=5500 and TX_PORT<=5599):
+            startup = 1
+            print "valid port numbers TX:%d RX:%d" % (TX_PORT,RX_PORT)
+        else:
+            startup = 0
+            print "invalid port number"
+    elif len(sys.argv) == 1:
+        print("BTW, you can enter the TX and RX port #'s as arguments")
+        TX_PORT = int(raw_input("port number(5500-5599)>>"))
+        if (TX_PORT>=5500 and TX_PORT<=5599):
+            startup = 1
+            print("valid port number (5500-5599)")
+        else:
+            print "invalid port number"
+            startup = 0
+    else:
+        print("you need a (valid) port number (5500-5599)")
+        startup = 0
+    
+initial = 1
+exit = 0
+print "%"*80+"\n"+"%"*80
+print "WELCOME TO TJ REVERB GROUNDSTATION COMMUNICATOR"
+print "type what you want, but preset commands are:\n'hello_tj'\n'get_time'"
 while True:
-    if len(sys.argv) > 1:
-	    msg = sys.argv[1]
+    if len(sys.argv) > 3:
+	    msg = sys.argv[3]
 	    print("MESSAGE = sys.argv[1]:",str(sys.argv[1]))
     else:
 	    msg = raw_input("enter your message:")
@@ -20,7 +47,7 @@ while True:
     msg_snd.sendto(msg, (UDP_IP, TX_PORT))
 
 
-    RX_PORT = 5557
+##### RECEIVED MESSAGE FROM CUBESAT #####
     msg_lstn = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
     msg_lstn.bind((UDP_IP, RX_PORT))
