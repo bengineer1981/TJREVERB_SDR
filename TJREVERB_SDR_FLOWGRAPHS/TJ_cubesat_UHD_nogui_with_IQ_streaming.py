@@ -5,7 +5,7 @@
 # Title: TJ Cubesat UHD No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Fri Jan 25 18:43:35 2019
+# Generated: Fri Jan 25 19:09:41 2019
 ##################################################
 
 import os
@@ -51,7 +51,9 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
         self.cubesat_zmq_port_3 = cubesat_zmq_port_3 = "5561"
         self.cubesat_zmq_port_2 = cubesat_zmq_port_2 = "5560"
         self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5559"
-        self.cubesat_ip_addr = cubesat_ip_addr = "127.0.0.1"
+        self.cubesat_port_2 = cubesat_port_2 = "5558"
+        self.cubesat_port_1 = cubesat_port_1 = "5556"
+        self.cubesat_ip_addr = cubesat_ip_addr = "10.0.0.54"
         self.baud_rate = baud_rate = 1200
         self.audio_line_driver = audio_line_driver = .8
         self.Decay = Decay = 0.8
@@ -115,9 +117,9 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
         )
         self.bruninga_str_to_aprs_0_1 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_zmq_port_2), 1472, True)
+        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_port_1), 1472, True)
         self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
-        self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_zmq_port_4, 10000, False)
+        self.blocks_socket_pdu_0_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
         self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,
@@ -137,9 +139,9 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.blocks_socket_pdu_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
+        self.msg_connect((self.blocks_socket_pdu_0_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
         self.msg_connect((self.bruninga_str_to_aprs_0_1, 'out'), (self.bruninga_ax25_fsk_mod_0_0, 'in'))
-        self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0, 0))
+        self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_0_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_1_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.zeromq_push_sink_0_0_0, 0))
@@ -249,6 +251,18 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
 
     def set_cubesat_zmq_port_1(self, cubesat_zmq_port_1):
         self.cubesat_zmq_port_1 = cubesat_zmq_port_1
+
+    def get_cubesat_port_2(self):
+        return self.cubesat_port_2
+
+    def set_cubesat_port_2(self, cubesat_port_2):
+        self.cubesat_port_2 = cubesat_port_2
+
+    def get_cubesat_port_1(self):
+        return self.cubesat_port_1
+
+    def set_cubesat_port_1(self, cubesat_port_1):
+        self.cubesat_port_1 = cubesat_port_1
 
     def get_cubesat_ip_addr(self):
         return self.cubesat_ip_addr
