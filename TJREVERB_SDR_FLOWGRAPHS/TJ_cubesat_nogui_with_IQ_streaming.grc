@@ -910,7 +910,7 @@ interface IP address</value>
     </param>
     <param>
       <key>host</key>
-      <value>cubesat_ip_addr</value>
+      <value>127.0.0.1</value>
     </param>
     <param>
       <key>id</key>
@@ -1008,7 +1008,7 @@ interface IP address</value>
     </param>
     <param>
       <key>ipaddr</key>
-      <value>cubesat_ip_addr</value>
+      <value>127.0.0.1</value>
     </param>
     <param>
       <key>port</key>

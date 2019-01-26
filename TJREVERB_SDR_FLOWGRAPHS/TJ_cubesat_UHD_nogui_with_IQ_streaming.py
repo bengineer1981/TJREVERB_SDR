@@ -5,7 +5,7 @@
 # Title: TJ Cubesat UHD No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Fri Jan 25 19:09:41 2019
+# Generated: Fri Jan 25 21:12:09 2019
 ##################################################
 
 import os
@@ -117,9 +117,9 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
         )
         self.bruninga_str_to_aprs_0_1 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_port_1), 1472, True)
+        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, '127.0.0.1', int(cubesat_port_1), 1472, True)
         self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
-        self.blocks_socket_pdu_0_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
+        self.blocks_socket_pdu_0_0_0_0 = blocks.socket_pdu("UDP_SERVER", '127.0.0.1', cubesat_port_2, 10000, False)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
         self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,

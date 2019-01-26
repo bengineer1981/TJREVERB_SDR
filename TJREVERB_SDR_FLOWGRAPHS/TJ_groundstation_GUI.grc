@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_UHD_dev_modem</value>
+      <value>TJ_groundstation_GUI</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Dev Modem</value>
+      <value>TJ Groundstation GUI</value>
     </param>
   </block>
   <block>
@@ -250,34 +250,6 @@
     <param>
       <key>value</key>
       <value>1200</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>value should be this device's 
-network interface IP address</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1256, 412)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>cubesat_ip_addr</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"127.0.0.1"</value>
     </param>
   </block>
   <block>
@@ -509,6 +481,33 @@ network interface IP address</value>
     <key>variable</key>
     <param>
       <key>comment</key>
+      <value>should be home IP</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1256, 412)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>groundstation_ip_addr</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"127.0.0.1"</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
       <value>use port value 5500-5599</value>
     </param>
     <param>
@@ -517,7 +516,7 @@ network interface IP address</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 396)</value>
+      <value>(504, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1044,7 +1043,7 @@ network interface IP address</value>
     </param>
     <param>
       <key>host</key>
-      <value>cubesat_ip_addr</value>
+      <value>groundstation_ip_addr</value>
     </param>
     <param>
       <key>id</key>
@@ -1142,7 +1141,7 @@ network interface IP address</value>
     </param>
     <param>
       <key>ipaddr</key>
-      <value>cubesat_ip_addr</value>
+      <value>groundstation_ip_addr</value>
     </param>
     <param>
       <key>port</key>
