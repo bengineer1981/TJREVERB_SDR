@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: TJ Cubesat UHD No Gui with IQ streaming
+# Title: TJ Cubesat No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Fri Jan 25 21:27:22 2019
+# Generated: Tue Jan 29 18:16:40 2019
 ##################################################
 
 import os
@@ -30,10 +30,10 @@ import threading
 import time
 
 
-class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
+class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
 
     def __init__(self):
-        gr.top_block.__init__(self, "TJ Cubesat UHD No Gui with IQ streaming")
+        gr.top_block.__init__(self, "TJ Cubesat No Gui with IQ streaming")
 
         ##################################################
         # Variables
@@ -300,7 +300,7 @@ class TJ_cubesat_UHD_nogui_with_IQ_streaming(gr.top_block):
         self.detectMarkSpace_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_cubesat_UHD_nogui_with_IQ_streaming, options=None):
+def main(top_block_cls=TJ_cubesat_nogui_with_IQ_streaming, options=None):
 
     tb = top_block_cls()
     tb.start()

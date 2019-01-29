@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Cubesat UHD No Gui</value>
+      <value>TJ Cubesat Parameter Control (no GUI)</value>
     </param>
   </block>
   <block>
@@ -149,7 +149,9 @@
     <param>
       <key>comment</key>
       <value>this should be the IP address of the cubesat's
-IP interface, not the localhost</value>
+network-facing IP interface
+only use 'localhost' if testing controller
+flowgraph on same machine</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -157,7 +159,7 @@ IP interface, not the localhost</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 100)</value>
+      <value>(872, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -461,6 +463,33 @@ IP interface, not the localhost</value>
     </param>
   </block>
   <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(880, 212)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>xml_rpc_port</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>5550</value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_tab_widget</key>
     <param>
       <key>alias</key>
@@ -626,11 +655,11 @@ IP interface, not the localhost</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 4)</value>
+      <value>(648, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -669,11 +698,11 @@ IP interface, not the localhost</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(200, 4)</value>
+      <value>(216, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -712,11 +741,11 @@ IP interface, not the localhost</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 4)</value>
+      <value>(376, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -755,11 +784,11 @@ IP interface, not the localhost</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 4)</value>
+      <value>(520, 20)</value>
     </param>
     <param>
       <key>_rotation</key>

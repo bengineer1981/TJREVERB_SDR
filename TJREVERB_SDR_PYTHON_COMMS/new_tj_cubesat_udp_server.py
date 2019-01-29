@@ -40,13 +40,14 @@ print "UDP TX port:", TX_PORT
 msg_lstn = socket.socket(socket.AF_INET, # Internet
                     socket.SOCK_DGRAM) # UDP
 msg_lstn.bind((UDP_IP, RX_PORT))
-
+msg_count = 0
 while True:
     msg_rxd = 0
     while msg_rxd==0:
+        print "listening for new message"
         msg, addr = msg_lstn.recvfrom(1024) # buffer size is 1024 bytes
         print "%"*80+"\n"+"%"*80
-        print "Complete Received Message from Groundstation:\n", msg
+        print "Complete Received Message from Groundstation:", msg
         print "%"*80+"\n"+"%"*80
         print "begin delimiter search"
         delimiter = "pid=F0"
@@ -74,13 +75,13 @@ while True:
                     msg_back = msg[start+scan_len:len(msg)]
                     break
             else:
-                print "no delimiter found yet"
+                #print "no delimiter found yet"
                 start+=1
                 stop+=1
     print "UDP target port:", TX_PORT
     msg_snd = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
-    msg_snd.sendto(msg_back, (UDP_IP, TX_PORT))
+    msg_snd.sendto(msg_back+" ", (UDP_IP, TX_PORT))
     print "echo '%s' sent" % msg_back
     msg_rxd = 0#reset flag to listen for more messages
     msg = False#reset msg value for 'if msg' condition

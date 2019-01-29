@@ -30,23 +30,28 @@ while startup == 0:
         print("you need a (valid) port number (5500-5599)")
         startup = 0
     
-initial = 1
-exit = 0
-print "%"*80+"\n"+"%"*80
-print "WELCOME TO TJ REVERB GROUNDSTATION COMMUNICATOR"
-print "type anything you want, but preset commands you can use are:\n'hello_tj'\n'get_sat_time'\n'noop'"
+msg_cnt = 0
 while True:
+    if msg_cnt == 0:
+        print "%"*80+"\n"+"%"*80
+        print "WELCOME TO TJ REVERB GROUNDSTATION COMMUNICATOR"
+        print "type anything you want, but preset commands you can use are:\n'hello_tj'\n'get_sat_time'\n'noop'"
+        msg_cnt += 1
+    else:
+        print "type anything you want, but preset commands you can use are:\n'hello_tj'\n'get_sat_time'\n'noop'"
+        msg_cnt += 1
     if len(sys.argv) > 3:
 	    msg = sys.argv[3]
-	    print("MESSAGE = sys.argv[1]:",str(sys.argv[1]))
+	    print("MESSAGE ENTERED AS ARGUMENT:",str(sys.argv[3]))
     else:
 	    msg = raw_input("enter your message:")
-    print "Transmitting Message:", msg
+    print "Sending Message #:", msg_cnt
+    print "Transmitted Message:", msg
 #    test_delim = "pid=F0" #use this for testing when there is no header
 #    msg = test_delim+msg  #add fake delimiter to msg
     msg_snd = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
-    msg_snd.sendto(msg, (UDP_IP, TX_PORT))
+    msg_snd.sendto(msg+" ", (UDP_IP, TX_PORT))
 
 
 ##### RECEIVED MESSAGE FROM CUBESAT #####
@@ -71,11 +76,11 @@ while True:
         for char in ack:
             #print "ack[start:stop]: %s" % ack[start:stop]
             if ack[start:stop] == delimiter:
-                print "found delimiter: %s",delimiter
+                print "found delimiter:",delimiter
                 print "extracted reply from cubesat:%s" % ack[start+scan_len:len(ack)]
                 break
             else:
-                print "no delimiter found yet"
+                #print "no delimiter found yet"
                 start+=1
                 stop+=1
         print "end of message"

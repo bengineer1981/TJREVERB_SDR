@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_cubesat_UHD_nogui</value>
+      <value>TJ_cubesat_nogui</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Cubesat UHD No Gui</value>
+      <value>TJ Cubesat No Gui</value>
     </param>
   </block>
   <block>
@@ -220,8 +220,10 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>value should be this device's network interface
-IP address</value>
+      <value>this should be the IP address of the cubesat's
+network-facing IP interface
+only use 'localhost' if testing controller
+flowgraph on same machine</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -229,7 +231,7 @@ IP address</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 420)</value>
+      <value>(360, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -241,7 +243,7 @@ IP address</value>
     </param>
     <param>
       <key>value</key>
-      <value>"127.0.0.1"</value>
+      <value>"10.0.0.54"</value>
     </param>
   </block>
   <block>
@@ -3524,7 +3526,7 @@ IP address</value>
     <key>xmlrpc_server</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>''</value>
     </param>
     <param>
       <key>alias</key>

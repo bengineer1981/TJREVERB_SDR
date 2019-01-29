@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_cubesat_UHD_nogui_with_IQ_streaming</value>
+      <value>TJ_cubesat_nogui_with_IQ_streaming</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Cubesat UHD No Gui with IQ streaming</value>
+      <value>TJ Cubesat No Gui with IQ streaming</value>
     </param>
   </block>
   <block>
@@ -220,9 +220,10 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>value should be this 
-device's network 
-interface IP address</value>
+      <value>this should be the IP address of the cubesat's
+network-facing IP interface
+only use 'localhost' if testing controller
+flowgraph on same machine</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -230,7 +231,7 @@ interface IP address</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 396)</value>
+      <value>(32, 372)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -419,7 +420,7 @@ interface IP address</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 356)</value>
+      <value>(40, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -792,7 +793,8 @@ interface IP address</value>
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>disabled by default
+used only for debugging</value>
     </param>
     <param>
       <key>affinity</key>
@@ -808,7 +810,7 @@ interface IP address</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 68)</value>
+      <value>(1256, 68)</value>
     </param>
     <param>
       <key>_rotation</key>

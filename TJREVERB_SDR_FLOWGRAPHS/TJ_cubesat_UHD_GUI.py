@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: TJ Groundstation GUI
+# Title: TJ Dev Modem
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Tue Jan 29 17:51:24 2019
+# Generated: Mon Jan 28 17:42:09 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -44,12 +44,12 @@ import time
 from gnuradio import qtgui
 
 
-class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
+class TJ_cubesat_UHD_GUI(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "TJ Groundstation GUI")
+        gr.top_block.__init__(self, "TJ Dev Modem")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("TJ Groundstation GUI")
+        self.setWindowTitle("TJ Dev Modem")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -67,7 +67,7 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "TJ_groundstation_GUI")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_GUI")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
@@ -81,11 +81,11 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
         self.rf_tx_rate = rf_tx_rate = audio_rate*interp
         self.rf_rx_rate = rf_rx_rate = 192000
         self.preamble_len = preamble_len = 300
-        self.groundstation_port_2 = groundstation_port_2 = "5557"
-        self.groundstation_port_1 = groundstation_port_1 = "5555"
-        self.groundstation_ip_addr = groundstation_ip_addr = "127.0.0.1"
         self.gain = gain = 40
         self.freq = freq = freq_chooser
+        self.cubesat_port_2 = cubesat_port_2 = "5558"
+        self.cubesat_port_1 = cubesat_port_1 = "5556"
+        self.cubesat_ip_addr = cubesat_ip_addr = "127.0.0.1"
         self.baud_rate = baud_rate = 1200
         self.audio_line_driver = audio_line_driver = 0.8
         self.Decay = Decay = 0.8
@@ -148,53 +148,53 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.uhd_usrp_source_0_1 = uhd.usrp_source(
+        self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
         	),
         )
-        self.uhd_usrp_source_0_1.set_samp_rate(rf_rx_rate)
-        self.uhd_usrp_source_0_1.set_center_freq(freq, 0)
-        self.uhd_usrp_source_0_1.set_gain(gain, 0)
-        self.uhd_usrp_source_0_1.set_antenna('RX2', 0)
-        self.uhd_usrp_source_0_1.set_bandwidth(rf_rx_rate, 0)
-        self.uhd_usrp_sink_0 = uhd.usrp_sink(
+        self.uhd_usrp_source_0.set_samp_rate(rf_rx_rate)
+        self.uhd_usrp_source_0.set_center_freq(freq, 0)
+        self.uhd_usrp_source_0.set_gain(gain, 0)
+        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0.set_bandwidth(rf_rx_rate, 0)
+        self.uhd_usrp_sink_0_1 = uhd.usrp_sink(
         	",".join(("", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
         	),
         )
-        self.uhd_usrp_sink_0.set_samp_rate(rf_tx_rate)
-        self.uhd_usrp_sink_0.set_center_freq(freq, 0)
-        self.uhd_usrp_sink_0.set_gain(tx_gain, 0)
-        self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
-        self.uhd_usrp_sink_0.set_bandwidth(rf_tx_rate, 0)
-        self.rational_resampler_xxx_0_0 = filter.rational_resampler_ccc(
+        self.uhd_usrp_sink_0_1.set_samp_rate(rf_tx_rate)
+        self.uhd_usrp_sink_0_1.set_center_freq(freq, 0)
+        self.uhd_usrp_sink_0_1.set_gain(tx_gain, 0)
+        self.uhd_usrp_sink_0_1.set_antenna('TX/RX', 0)
+        self.uhd_usrp_sink_0_1.set_bandwidth(rf_tx_rate, 0)
+        self.rational_resampler_xxx_0_0_0 = filter.rational_resampler_ccc(
                 interpolation=4,
                 decimation=1,
                 taps=None,
                 fractional_bw=None,
         )
-        self.qtgui_waterfall_sink_x_0_2 = qtgui.waterfall_sink_c(
+        self.qtgui_waterfall_sink_x_0_2_0 = qtgui.waterfall_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	freq, #fc
-        	rf_rx_rate, #bw
+        	0, #fc
+        	audio_rate, #bw
         	"", #name
                 1 #number of inputs
         )
-        self.qtgui_waterfall_sink_x_0_2.set_update_time(0.10)
-        self.qtgui_waterfall_sink_x_0_2.enable_grid(False)
-        self.qtgui_waterfall_sink_x_0_2.enable_axis_labels(True)
+        self.qtgui_waterfall_sink_x_0_2_0.set_update_time(0.10)
+        self.qtgui_waterfall_sink_x_0_2_0.enable_grid(False)
+        self.qtgui_waterfall_sink_x_0_2_0.enable_axis_labels(True)
 
         if not True:
-          self.qtgui_waterfall_sink_x_0_2.disable_legend()
+          self.qtgui_waterfall_sink_x_0_2_0.disable_legend()
 
         if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_waterfall_sink_x_0_2.set_plot_pos_half(not True)
+          self.qtgui_waterfall_sink_x_0_2_0.set_plot_pos_half(not True)
 
         labels = ['', '', '', '', '',
                   '', '', '', '', '']
@@ -204,80 +204,80 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
                   1.0, 1.0, 1.0, 1.0, 1.0]
         for i in xrange(1):
             if len(labels[i]) == 0:
-                self.qtgui_waterfall_sink_x_0_2.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_waterfall_sink_x_0_2_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_waterfall_sink_x_0_2.set_line_label(i, labels[i])
-            self.qtgui_waterfall_sink_x_0_2.set_color_map(i, colors[i])
-            self.qtgui_waterfall_sink_x_0_2.set_line_alpha(i, alphas[i])
+                self.qtgui_waterfall_sink_x_0_2_0.set_line_label(i, labels[i])
+            self.qtgui_waterfall_sink_x_0_2_0.set_color_map(i, colors[i])
+            self.qtgui_waterfall_sink_x_0_2_0.set_line_alpha(i, alphas[i])
 
-        self.qtgui_waterfall_sink_x_0_2.set_intensity_range(-140, 10)
+        self.qtgui_waterfall_sink_x_0_2_0.set_intensity_range(-140, 10)
 
-        self._qtgui_waterfall_sink_x_0_2_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0_2.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_0.addWidget(self._qtgui_waterfall_sink_x_0_2_win, 1, 0, 1, 1)
-        for r in range(1, 2):
-            self.tabs_grid_layout_0.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.tabs_grid_layout_0.setColumnStretch(c, 1)
-        self.qtgui_waterfall_sink_x_0_1 = qtgui.waterfall_sink_c(
-        	1024, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	freq, #fc
-        	rf_rx_rate, #bw
-        	"GND STAT DEMOD", #name
-                1 #number of inputs
-        )
-        self.qtgui_waterfall_sink_x_0_1.set_update_time(0.10)
-        self.qtgui_waterfall_sink_x_0_1.enable_grid(False)
-        self.qtgui_waterfall_sink_x_0_1.enable_axis_labels(True)
-
-        if not True:
-          self.qtgui_waterfall_sink_x_0_1.disable_legend()
-
-        if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_waterfall_sink_x_0_1.set_plot_pos_half(not True)
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        colors = [0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_waterfall_sink_x_0_1.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_waterfall_sink_x_0_1.set_line_label(i, labels[i])
-            self.qtgui_waterfall_sink_x_0_1.set_color_map(i, colors[i])
-            self.qtgui_waterfall_sink_x_0_1.set_line_alpha(i, alphas[i])
-
-        self.qtgui_waterfall_sink_x_0_1.set_intensity_range(-140, 10)
-
-        self._qtgui_waterfall_sink_x_0_1_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0_1.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_0.addWidget(self._qtgui_waterfall_sink_x_0_1_win, 3, 0, 1, 1)
+        self._qtgui_waterfall_sink_x_0_2_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0_2_0.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_0.addWidget(self._qtgui_waterfall_sink_x_0_2_0_win, 3, 1, 1, 1)
         for r in range(3, 4):
             self.tabs_grid_layout_0.setRowStretch(r, 1)
-        for c in range(0, 1):
+        for c in range(1, 2):
             self.tabs_grid_layout_0.setColumnStretch(c, 1)
-        self.qtgui_time_sink_x_0_1 = qtgui.time_sink_f(
+        self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	1024, #size
-        	audio_rate, #samp_rate
-        	"GND STAT MOD", #name
-        	1 #number of inputs
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	audio_rate, #bw
+        	"", #name
+                1 #number of inputs
         )
-        self.qtgui_time_sink_x_0_1.set_update_time(0.10)
-        self.qtgui_time_sink_x_0_1.set_y_axis(-1, 1)
-
-        self.qtgui_time_sink_x_0_1.set_y_label('Amplitude', "")
-
-        self.qtgui_time_sink_x_0_1.enable_tags(-1, True)
-        self.qtgui_time_sink_x_0_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_0_1.enable_autoscale(False)
-        self.qtgui_time_sink_x_0_1.enable_grid(False)
-        self.qtgui_time_sink_x_0_1.enable_axis_labels(True)
-        self.qtgui_time_sink_x_0_1.enable_control_panel(False)
+        self.qtgui_waterfall_sink_x_0.set_update_time(0.10)
+        self.qtgui_waterfall_sink_x_0.enable_grid(False)
+        self.qtgui_waterfall_sink_x_0.enable_axis_labels(True)
 
         if not True:
-          self.qtgui_time_sink_x_0_1.disable_legend()
+          self.qtgui_waterfall_sink_x_0.disable_legend()
+
+        if "complex" == "float" or "complex" == "msg_float":
+          self.qtgui_waterfall_sink_x_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        colors = [0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_waterfall_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_waterfall_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_waterfall_sink_x_0.set_color_map(i, colors[i])
+            self.qtgui_waterfall_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self.qtgui_waterfall_sink_x_0.set_intensity_range(-140, 10)
+
+        self._qtgui_waterfall_sink_x_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_0.addWidget(self._qtgui_waterfall_sink_x_0_win, 1, 1, 1, 1)
+        for r in range(1, 2):
+            self.tabs_grid_layout_0.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.tabs_grid_layout_0.setColumnStretch(c, 1)
+        self.qtgui_time_sink_x_0_2 = qtgui.time_sink_f(
+        	1024, #size
+        	audio_rate, #samp_rate
+        	"CUBESAT AUDIO MOD", #name
+        	1 #number of inputs
+        )
+        self.qtgui_time_sink_x_0_2.set_update_time(0.10)
+        self.qtgui_time_sink_x_0_2.set_y_axis(-1, 1)
+
+        self.qtgui_time_sink_x_0_2.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_0_2.enable_tags(-1, True)
+        self.qtgui_time_sink_x_0_2.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0_2.enable_autoscale(False)
+        self.qtgui_time_sink_x_0_2.enable_grid(False)
+        self.qtgui_time_sink_x_0_2.enable_axis_labels(True)
+        self.qtgui_time_sink_x_0_2.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_time_sink_x_0_2.disable_legend()
 
         labels = ['', '', '', '', '',
                   '', '', '', '', '']
@@ -294,25 +294,25 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
 
         for i in xrange(1):
             if len(labels[i]) == 0:
-                self.qtgui_time_sink_x_0_1.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_time_sink_x_0_2.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_time_sink_x_0_1.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_0_1.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_0_1.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_0_1.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_0_1.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_0_1.set_line_alpha(i, alphas[i])
+                self.qtgui_time_sink_x_0_2.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_0_2.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_0_2.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_0_2.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_0_2.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_0_2.set_line_alpha(i, alphas[i])
 
-        self._qtgui_time_sink_x_0_1_win = sip.wrapinstance(self.qtgui_time_sink_x_0_1.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_3.addWidget(self._qtgui_time_sink_x_0_1_win, 0, 0, 1, 1)
-        for r in range(0, 1):
+        self._qtgui_time_sink_x_0_2_win = sip.wrapinstance(self.qtgui_time_sink_x_0_2.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_3.addWidget(self._qtgui_time_sink_x_0_2_win, 1, 1, 1, 1)
+        for r in range(1, 2):
             self.tabs_grid_layout_3.setRowStretch(r, 1)
-        for c in range(0, 1):
+        for c in range(1, 2):
             self.tabs_grid_layout_3.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_f(
         	1024, #size
         	audio_rate, #samp_rate
-        	"GND STAT DEMOD", #name
+        	"cubesat audio demod", #name
         	1 #number of inputs
         )
         self.qtgui_time_sink_x_0_0.set_update_time(0.10)
@@ -355,81 +355,81 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_3.addWidget(self._qtgui_time_sink_x_0_0_win, 1, 0, 1, 1)
-        for r in range(1, 2):
-            self.tabs_grid_layout_3.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.tabs_grid_layout_3.setColumnStretch(c, 1)
-        self.qtgui_freq_sink_x_0_2 = qtgui.freq_sink_c(
-        	4096, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	freq, #fc
-        	rf_rx_rate, #bw
-        	"GND STAT DEMOD", #name
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win)
+        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
+        	1024, #size
+        	audio_rate, #samp_rate
+        	"cubesat audio demod", #name
         	1 #number of inputs
         )
-        self.qtgui_freq_sink_x_0_2.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0_2.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0_2.set_y_label('Relative Gain', 'dB')
-        self.qtgui_freq_sink_x_0_2.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0_2.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0_2.enable_grid(False)
-        self.qtgui_freq_sink_x_0_2.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0_2.enable_axis_labels(True)
-        self.qtgui_freq_sink_x_0_2.enable_control_panel(True)
+        self.qtgui_time_sink_x_0.set_update_time(0.10)
+        self.qtgui_time_sink_x_0.set_y_axis(-1, 1)
+
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_0.enable_tags(-1, True)
+        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
+        self.qtgui_time_sink_x_0.enable_control_panel(False)
 
         if not True:
-          self.qtgui_freq_sink_x_0_2.disable_legend()
-
-        if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_freq_sink_x_0_2.set_plot_pos_half(not True)
+          self.qtgui_time_sink_x_0.disable_legend()
 
         labels = ['', '', '', '', '',
                   '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+                  "magenta", "yellow", "dark red", "dark green", "blue"]
+        styles = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+                   -1, -1, -1, -1, -1]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
                   1.0, 1.0, 1.0, 1.0, 1.0]
+
         for i in xrange(1):
             if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0_2.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_freq_sink_x_0_2.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0_2.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0_2.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0_2.set_line_alpha(i, alphas[i])
+                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
 
-        self._qtgui_freq_sink_x_0_2_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_2.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_2_win, 2, 0, 1, 1)
-        for r in range(2, 3):
-            self.tabs_grid_layout_0.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.tabs_grid_layout_0.setColumnStretch(c, 1)
-        self.qtgui_freq_sink_x_0_1_1 = qtgui.freq_sink_c(
+        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_3.addWidget(self._qtgui_time_sink_x_0_win, 0, 1, 1, 1)
+        for r in range(0, 1):
+            self.tabs_grid_layout_3.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.tabs_grid_layout_3.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0_1_1_0 = qtgui.freq_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	freq, #fc
-        	rf_tx_rate, #bw
-        	"GND STAT MOD", #name
+        	0, #fc
+        	audio_rate, #bw
+        	"CUBESAT MOD", #name
         	1 #number of inputs
         )
-        self.qtgui_freq_sink_x_0_1_1.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0_1_1.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0_1_1.set_y_label('Relative Gain', 'dB')
-        self.qtgui_freq_sink_x_0_1_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0_1_1.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0_1_1.enable_grid(False)
-        self.qtgui_freq_sink_x_0_1_1.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0_1_1.enable_axis_labels(True)
-        self.qtgui_freq_sink_x_0_1_1.enable_control_panel(True)
+        self.qtgui_freq_sink_x_0_1_1_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_1_1_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_1_1_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_1_1_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_1_1_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_1_1_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_1_1_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_1_1_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_1_1_0.enable_control_panel(True)
 
         if not True:
-          self.qtgui_freq_sink_x_0_1_1.disable_legend()
+          self.qtgui_freq_sink_x_0_1_1_0.disable_legend()
 
         if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_freq_sink_x_0_1_1.set_plot_pos_half(not True)
+          self.qtgui_freq_sink_x_0_1_1_0.set_plot_pos_half(not True)
 
         labels = ['', '', '', '', '',
                   '', '', '', '', '']
@@ -441,20 +441,67 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
                   1.0, 1.0, 1.0, 1.0, 1.0]
         for i in xrange(1):
             if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0_1_1.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_freq_sink_x_0_1_1_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_freq_sink_x_0_1_1.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0_1_1.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0_1_1.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0_1_1.set_line_alpha(i, alphas[i])
+                self.qtgui_freq_sink_x_0_1_1_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_1_1_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_1_1_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_1_1_0.set_line_alpha(i, alphas[i])
 
-        self._qtgui_freq_sink_x_0_1_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_1_1.pyqwidget(), Qt.QWidget)
-        self.tabs_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_1_1_win, 0, 0, 1, 1)
+        self._qtgui_freq_sink_x_0_1_1_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_1_1_0.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_1_1_0_win, 2, 1, 1, 1)
+        for r in range(2, 3):
+            self.tabs_grid_layout_0.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.tabs_grid_layout_0.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
+        	4096, #size
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	audio_rate, #bw
+        	"CUBESAT DEMOD", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0.enable_control_panel(True)
+
+        if not True:
+          self.qtgui_freq_sink_x_0.disable_legend()
+
+        if "complex" == "float" or "complex" == "msg_float":
+          self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.tabs_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win, 0, 1, 1, 1)
         for r in range(0, 1):
             self.tabs_grid_layout_0.setRowStretch(r, 1)
-        for c in range(0, 1):
+        for c in range(1, 2):
             self.tabs_grid_layout_0.setColumnStretch(c, 1)
-        self.low_pass_filter_0_0 = filter.fir_filter_ccf(4, firdes.low_pass(
+        self.low_pass_filter_0 = filter.fir_filter_ccf(4, firdes.low_pass(
         	1, rf_rx_rate, rx_downsamp_bw/2, 1000, firdes.WIN_HAMMING, 6.76))
         self._freq_chooser_options = (144.39e6, 137.62e6, 137.9125e6, 137.1e6, 88.5e6, )
         self._freq_chooser_labels = ('APRS (144.39MHz)', 'NOAA-15 (137.62MHz)', 'NOAA-18 (137.9125MHz)', 'NOAA-19 (137.1MHz)', 'FM (88.5MHz)', )
@@ -481,67 +528,68 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.detectMarkSpace_1_0_0 = detectMarkSpace(
+        self.detectMarkSpace_1_0 = detectMarkSpace(
             Frequency=2200,
             attack=Attack,
             decay=Decay,
             samp_rate=audio_rate,
         )
-        self.detectMarkSpace_0_0_0 = detectMarkSpace(
+        self.detectMarkSpace_0_0 = detectMarkSpace(
             Frequency=1200,
             attack=Attack,
             decay=Decay,
             samp_rate=audio_rate,
         )
-        self.bruninga_str_to_aprs_0 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
-        self.bruninga_ax25_fsk_mod_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_ip_addr, int(groundstation_port_2), 1472, True)
-        self.blocks_sub_xx_0_0_0_0 = blocks.sub_ff(1)
-        self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_SERVER", groundstation_ip_addr, groundstation_port_1, 10000, False)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((audio_line_driver, ))
+        self.bruninga_str_to_aprs_0_1 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
+        self.bruninga_ax25_fsk_mod_0_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
+        self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_port_1), 1472, True)
+        self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
+        self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
+        self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
         self.audio_sink_0 = audio.sink(audio_rate, 'hw:1,0', True)
-        self.analog_nbfm_tx_0 = analog.nbfm_tx(
+        self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,
         	quad_rate=audio_rate,
         	tau=75e-6,
         	max_dev=5e3,
         	fh=-1.0,
                 )
-        self.analog_nbfm_rx_0_0 = analog.nbfm_rx(
+        self.analog_nbfm_rx_0 = analog.nbfm_rx(
         	audio_rate=audio_rate,
         	quad_rate=audio_rate,
         	tau=75e-6,
         	max_dev=5e3,
           )
-        self.afsk_ax25decode_1_0 = afsk.ax25decode(audio_rate, 1)
+        self.afsk_ax25decode_1 = afsk.ax25decode(audio_rate, 1)
 
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.blocks_socket_pdu_0_0, 'pdus'), (self.bruninga_str_to_aprs_0, 'in'))
-        self.msg_connect((self.bruninga_str_to_aprs_0, 'out'), (self.bruninga_ax25_fsk_mod_0, 'in'))
-        self.connect((self.afsk_ax25decode_1_0, 0), (self.blocks_udp_sink_0_0, 0))
-        self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_0_0_0, 0))
-        self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_1_0_0, 0))
-        self.connect((self.analog_nbfm_rx_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
-        self.connect((self.analog_nbfm_tx_0, 0), (self.rational_resampler_xxx_0_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.analog_nbfm_tx_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_sub_xx_0_0_0_0, 0), (self.afsk_ax25decode_1_0, 0))
-        self.connect((self.bruninga_ax25_fsk_mod_0, 0), (self.blocks_multiply_const_vxx_0, 0))
-        self.connect((self.detectMarkSpace_0_0_0, 0), (self.blocks_sub_xx_0_0_0_0, 0))
-        self.connect((self.detectMarkSpace_1_0_0, 0), (self.blocks_sub_xx_0_0_0_0, 1))
-        self.connect((self.low_pass_filter_0_0, 0), (self.analog_nbfm_rx_0_0, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_freq_sink_x_0_2, 0))
-        self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_waterfall_sink_x_0_1, 0))
-        self.connect((self.rational_resampler_xxx_0_0, 0), (self.qtgui_freq_sink_x_0_1_1, 0))
-        self.connect((self.rational_resampler_xxx_0_0, 0), (self.qtgui_waterfall_sink_x_0_2, 0))
-        self.connect((self.rational_resampler_xxx_0_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.uhd_usrp_source_0_1, 0), (self.low_pass_filter_0_0, 0))
+        self.msg_connect((self.blocks_socket_pdu_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
+        self.msg_connect((self.bruninga_str_to_aprs_0_1, 'out'), (self.bruninga_ax25_fsk_mod_0_0, 'in'))
+        self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0, 0))
+        self.connect((self.analog_nbfm_rx_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_0_0, 0))
+        self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_1_0, 0))
+        self.connect((self.analog_nbfm_rx_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.analog_nbfm_tx_0_0, 0), (self.rational_resampler_xxx_0_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.analog_nbfm_tx_0_0, 0))
+        self.connect((self.blocks_sub_xx_0_0_0, 0), (self.afsk_ax25decode_1, 0))
+        self.connect((self.blocks_sub_xx_0_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
+        self.connect((self.bruninga_ax25_fsk_mod_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
+        self.connect((self.bruninga_ax25_fsk_mod_0_0, 0), (self.qtgui_time_sink_x_0_2, 0))
+        self.connect((self.detectMarkSpace_0_0, 0), (self.blocks_sub_xx_0_0_0, 0))
+        self.connect((self.detectMarkSpace_1_0, 0), (self.blocks_sub_xx_0_0_0, 1))
+        self.connect((self.low_pass_filter_0, 0), (self.analog_nbfm_rx_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.rational_resampler_xxx_0_0_0, 0), (self.qtgui_freq_sink_x_0_1_1_0, 0))
+        self.connect((self.rational_resampler_xxx_0_0_0, 0), (self.qtgui_waterfall_sink_x_0_2_0, 0))
+        self.connect((self.rational_resampler_xxx_0_0_0, 0), (self.uhd_usrp_sink_0_1, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.low_pass_filter_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "TJ_groundstation_GUI")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_GUI")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -566,17 +614,22 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
     def set_audio_rate(self, audio_rate):
         self.audio_rate = audio_rate
         self.set_rf_tx_rate(self.audio_rate*self.interp)
-        self.qtgui_time_sink_x_0_1.set_samp_rate(self.audio_rate)
+        self.qtgui_waterfall_sink_x_0_2_0.set_frequency_range(0, self.audio_rate)
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.audio_rate)
+        self.qtgui_time_sink_x_0_2.set_samp_rate(self.audio_rate)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.audio_rate)
-        self.detectMarkSpace_1_0_0.set_samp_rate(self.audio_rate)
-        self.detectMarkSpace_0_0_0.set_samp_rate(self.audio_rate)
+        self.qtgui_time_sink_x_0.set_samp_rate(self.audio_rate)
+        self.qtgui_freq_sink_x_0_1_1_0.set_frequency_range(0, self.audio_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.audio_rate)
+        self.detectMarkSpace_1_0.set_samp_rate(self.audio_rate)
+        self.detectMarkSpace_0_0.set_samp_rate(self.audio_rate)
 
     def get_tx_gain(self):
         return self.tx_gain
 
     def set_tx_gain(self, tx_gain):
         self.tx_gain = tx_gain
-        self.uhd_usrp_sink_0.set_gain(self.tx_gain, 0)
+        self.uhd_usrp_sink_0_1.set_gain(self.tx_gain, 0)
 
 
     def get_rx_downsamp_bw(self):
@@ -584,28 +637,24 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
 
     def set_rx_downsamp_bw(self, rx_downsamp_bw):
         self.rx_downsamp_bw = rx_downsamp_bw
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.rf_rx_rate, self.rx_downsamp_bw/2, 1000, firdes.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.rf_rx_rate, self.rx_downsamp_bw/2, 1000, firdes.WIN_HAMMING, 6.76))
 
     def get_rf_tx_rate(self):
         return self.rf_tx_rate
 
     def set_rf_tx_rate(self, rf_tx_rate):
         self.rf_tx_rate = rf_tx_rate
-        self.uhd_usrp_sink_0.set_samp_rate(self.rf_tx_rate)
-        self.uhd_usrp_sink_0.set_bandwidth(self.rf_tx_rate, 0)
-        self.qtgui_freq_sink_x_0_1_1.set_frequency_range(self.freq, self.rf_tx_rate)
+        self.uhd_usrp_sink_0_1.set_samp_rate(self.rf_tx_rate)
+        self.uhd_usrp_sink_0_1.set_bandwidth(self.rf_tx_rate, 0)
 
     def get_rf_rx_rate(self):
         return self.rf_rx_rate
 
     def set_rf_rx_rate(self, rf_rx_rate):
         self.rf_rx_rate = rf_rx_rate
-        self.uhd_usrp_source_0_1.set_samp_rate(self.rf_rx_rate)
-        self.uhd_usrp_source_0_1.set_bandwidth(self.rf_rx_rate, 0)
-        self.qtgui_waterfall_sink_x_0_2.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.qtgui_waterfall_sink_x_0_1.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.qtgui_freq_sink_x_0_2.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.rf_rx_rate, self.rx_downsamp_bw/2, 1000, firdes.WIN_HAMMING, 6.76))
+        self.uhd_usrp_source_0.set_samp_rate(self.rf_rx_rate)
+        self.uhd_usrp_source_0.set_bandwidth(self.rf_rx_rate, 0)
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.rf_rx_rate, self.rx_downsamp_bw/2, 1000, firdes.WIN_HAMMING, 6.76))
 
     def get_preamble_len(self):
         return self.preamble_len
@@ -613,30 +662,12 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
     def set_preamble_len(self, preamble_len):
         self.preamble_len = preamble_len
 
-    def get_groundstation_port_2(self):
-        return self.groundstation_port_2
-
-    def set_groundstation_port_2(self, groundstation_port_2):
-        self.groundstation_port_2 = groundstation_port_2
-
-    def get_groundstation_port_1(self):
-        return self.groundstation_port_1
-
-    def set_groundstation_port_1(self, groundstation_port_1):
-        self.groundstation_port_1 = groundstation_port_1
-
-    def get_groundstation_ip_addr(self):
-        return self.groundstation_ip_addr
-
-    def set_groundstation_ip_addr(self, groundstation_ip_addr):
-        self.groundstation_ip_addr = groundstation_ip_addr
-
     def get_gain(self):
         return self.gain
 
     def set_gain(self, gain):
         self.gain = gain
-        self.uhd_usrp_source_0_1.set_gain(self.gain, 0)
+        self.uhd_usrp_source_0.set_gain(self.gain, 0)
 
 
     def get_freq(self):
@@ -644,12 +675,26 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
 
     def set_freq(self, freq):
         self.freq = freq
-        self.uhd_usrp_source_0_1.set_center_freq(self.freq, 0)
-        self.uhd_usrp_sink_0.set_center_freq(self.freq, 0)
-        self.qtgui_waterfall_sink_x_0_2.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.qtgui_waterfall_sink_x_0_1.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.qtgui_freq_sink_x_0_2.set_frequency_range(self.freq, self.rf_rx_rate)
-        self.qtgui_freq_sink_x_0_1_1.set_frequency_range(self.freq, self.rf_tx_rate)
+        self.uhd_usrp_source_0.set_center_freq(self.freq, 0)
+        self.uhd_usrp_sink_0_1.set_center_freq(self.freq, 0)
+
+    def get_cubesat_port_2(self):
+        return self.cubesat_port_2
+
+    def set_cubesat_port_2(self, cubesat_port_2):
+        self.cubesat_port_2 = cubesat_port_2
+
+    def get_cubesat_port_1(self):
+        return self.cubesat_port_1
+
+    def set_cubesat_port_1(self, cubesat_port_1):
+        self.cubesat_port_1 = cubesat_port_1
+
+    def get_cubesat_ip_addr(self):
+        return self.cubesat_ip_addr
+
+    def set_cubesat_ip_addr(self, cubesat_ip_addr):
+        self.cubesat_ip_addr = cubesat_ip_addr
 
     def get_baud_rate(self):
         return self.baud_rate
@@ -662,26 +707,26 @@ class TJ_groundstation_GUI(gr.top_block, Qt.QWidget):
 
     def set_audio_line_driver(self, audio_line_driver):
         self.audio_line_driver = audio_line_driver
-        self.blocks_multiply_const_vxx_0.set_k((self.audio_line_driver, ))
+        self.blocks_multiply_const_vxx_0_0.set_k((self.audio_line_driver, ))
 
     def get_Decay(self):
         return self.Decay
 
     def set_Decay(self, Decay):
         self.Decay = Decay
-        self.detectMarkSpace_1_0_0.set_decay(self.Decay)
-        self.detectMarkSpace_0_0_0.set_decay(self.Decay)
+        self.detectMarkSpace_1_0.set_decay(self.Decay)
+        self.detectMarkSpace_0_0.set_decay(self.Decay)
 
     def get_Attack(self):
         return self.Attack
 
     def set_Attack(self, Attack):
         self.Attack = Attack
-        self.detectMarkSpace_1_0_0.set_attack(self.Attack)
-        self.detectMarkSpace_0_0_0.set_attack(self.Attack)
+        self.detectMarkSpace_1_0.set_attack(self.Attack)
+        self.detectMarkSpace_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_groundstation_GUI, options=None):
+def main(top_block_cls=TJ_cubesat_UHD_GUI, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

@@ -5,7 +5,7 @@
 # Title: TJ Cubesat Parameter Control (no GUI with IQ Streaming)
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Tue Jan 29 18:12:22 2019
+# Generated: Tue Jan 29 18:16:38 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -35,7 +35,7 @@ import xmlrpclib
 from gnuradio import qtgui
 
 
-class TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.QWidget):
+class TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "TJ Cubesat Parameter Control (no GUI with IQ Streaming)")
@@ -58,7 +58,7 @@ class TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.Q
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
@@ -458,7 +458,7 @@ class TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.Q
         self.connect((self.zeromq_pull_source_0_0_0_0, 0), (self.qtgui_time_sink_x_0_2, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -554,7 +554,7 @@ class TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.Q
         self.xmlrpc_client1_0_0_0_0.set_audio_line_driver(self.audio_line_driver)
 
 
-def main(top_block_cls=TJ_cubesat_UHD_param_cntrl_for_no_gui_with_IQ_streaming, options=None):
+def main(top_block_cls=TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
