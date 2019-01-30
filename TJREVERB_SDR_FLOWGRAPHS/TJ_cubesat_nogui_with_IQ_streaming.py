@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Tue Jan 29 18:16:40 2019
+# Generated: Tue Jan 29 19:39:25 2019
 ##################################################
 
 import os
@@ -47,10 +47,10 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.preamble_len = preamble_len = 300
         self.gain = gain = 40
         self.freq = freq = 144.39e6
-        self.cubesat_zmq_port_4 = cubesat_zmq_port_4 = "5562"
-        self.cubesat_zmq_port_3 = cubesat_zmq_port_3 = "5561"
-        self.cubesat_zmq_port_2 = cubesat_zmq_port_2 = "5560"
-        self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5559"
+        self.cubesat_zmq_port_4 = cubesat_zmq_port_4 = "5504"
+        self.cubesat_zmq_port_3 = cubesat_zmq_port_3 = "5503"
+        self.cubesat_zmq_port_2 = cubesat_zmq_port_2 = "5502"
+        self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5501"
         self.cubesat_port_2 = cubesat_port_2 = "5558"
         self.cubesat_port_1 = cubesat_port_1 = "5556"
         self.cubesat_ip_addr = cubesat_ip_addr = "10.0.0.54"
@@ -66,7 +66,7 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_3, 100, False, -1)
         self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_2, 100, False, -1)
         self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_1, 100, False, -1)
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('localhost', 1234), allow_none=True)
+        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
         self.xmlrpc_server_0.register_instance(self)
         self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
         self.xmlrpc_server_0_thread.daemon = True

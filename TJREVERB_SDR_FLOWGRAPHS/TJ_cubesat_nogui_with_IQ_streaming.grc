@@ -324,7 +324,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"5559"</value>
+      <value>"5501"</value>
     </param>
   </block>
   <block>
@@ -339,7 +339,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 396)</value>
+      <value>(448, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -351,7 +351,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"5560"</value>
+      <value>"5502"</value>
     </param>
   </block>
   <block>
@@ -366,7 +366,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 396)</value>
+      <value>(608, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -378,7 +378,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"5561"</value>
+      <value>"5503"</value>
     </param>
   </block>
   <block>
@@ -393,7 +393,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(784, 396)</value>
+      <value>(776, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -405,7 +405,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"5562"</value>
+      <value>"5504"</value>
     </param>
   </block>
   <block>
@@ -3635,7 +3635,7 @@ used only for debugging</value>
     <key>xmlrpc_server</key>
     <param>
       <key>addr</key>
-      <value>localhost</value>
+      <value>''</value>
     </param>
     <param>
       <key>alias</key>
