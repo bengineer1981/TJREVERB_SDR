@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 100)</value>
+      <value>(632, 100)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -186,7 +186,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 356)</value>
+      <value>(544, 388)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -198,7 +198,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"10.0.0.54"</value>
+      <value>"192.168.1.23"</value>
     </param>
   </block>
   <block>
@@ -380,7 +380,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>137.62e6</value>
+      <value>144.39e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -2662,7 +2662,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 4)</value>
+      <value>(632, 4)</value>
     </param>
     <param>
       <key>_rotation</key>

@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Tue Jan 29 19:39:25 2019
+# Generated: Sat Feb  2 17:42:48 2019
 ##################################################
 
 import os
@@ -53,7 +53,7 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5501"
         self.cubesat_port_2 = cubesat_port_2 = "5558"
         self.cubesat_port_1 = cubesat_port_1 = "5556"
-        self.cubesat_ip_addr = cubesat_ip_addr = "10.0.0.54"
+        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.23"
         self.baud_rate = baud_rate = 1200
         self.audio_line_driver = audio_line_driver = .8
         self.Decay = Decay = 0.8

@@ -243,7 +243,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"10.0.0.54"</value>
+      <value>"192.168.1.23"</value>
     </param>
   </block>
   <block>

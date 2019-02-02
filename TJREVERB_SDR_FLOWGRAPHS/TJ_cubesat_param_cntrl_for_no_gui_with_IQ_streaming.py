@@ -5,7 +5,7 @@
 # Title: TJ Cubesat Parameter Control (no GUI with IQ Streaming)
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Tue Jan 29 19:39:31 2019
+# Generated: Sat Feb  2 17:43:53 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -64,7 +64,7 @@ class TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.QWidg
         ##################################################
         # Variables
         ##################################################
-        self.freq_chooser = freq_chooser = 137.62e6
+        self.freq_chooser = freq_chooser = 144.39e6
         self.xml_rpc_port = xml_rpc_port = 5550
         self.tx_gain = tx_gain = 10
         self.rf_rx_rate = rf_rx_rate = 192000
@@ -74,7 +74,7 @@ class TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.QWidg
         self.cubesat_zmq_port_3 = cubesat_zmq_port_3 = "5503"
         self.cubesat_zmq_port_2 = cubesat_zmq_port_2 = "5502"
         self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5501"
-        self.cubesat_ip_addr = cubesat_ip_addr = "10.0.0.54"
+        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.23"
         self.audio_rate = audio_rate = 48000
         self.audio_line_driver = audio_line_driver = 0.8
 
@@ -111,10 +111,10 @@ class TJ_cubesat_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt.QWidg
         self.zeromq_pull_source_0_0_0 = zeromq.pull_source(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_3, 100, False, -1)
         self.zeromq_pull_source_0_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_2, 100, False, -1)
         self.zeromq_pull_source_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_1, 100, False, -1)
-        self.xmlrpc_client1_1 = xmlrpclib.Server('http://10.0.0.54:1234')
-        self.xmlrpc_client1_0_1 = xmlrpclib.Server('http://10.0.0.54:1234')
-        self.xmlrpc_client1_0_0_1 = xmlrpclib.Server('http://10.0.0.54:1234')
-        self.xmlrpc_client1_0_0_0_0 = xmlrpclib.Server('http://10.0.0.54:1234')
+        self.xmlrpc_client1_1 = xmlrpclib.Server('http://192.168.1.23:1234')
+        self.xmlrpc_client1_0_1 = xmlrpclib.Server('http://192.168.1.23:1234')
+        self.xmlrpc_client1_0_0_1 = xmlrpclib.Server('http://192.168.1.23:1234')
+        self.xmlrpc_client1_0_0_0_0 = xmlrpclib.Server('http://192.168.1.23:1234')
         self._tx_gain_range = Range(1, 89, 1, 10, 200)
         self._tx_gain_win = RangeWidget(self._tx_gain_range, self.set_tx_gain, 'tx gain', "counter_slider", float)
         self.top_grid_layout.addWidget(self._tx_gain_win, 0, 2, 1, 1)

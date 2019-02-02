@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_UHD_dev_modem</value>
+      <value>TJ_groundstation_and_cubesat_simulator_no_radio</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Dev Modem</value>
+      <value>TJ Groundstation and Cubesat Simulator (no radio)</value>
     </param>
   </block>
   <block>
@@ -402,7 +402,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"localhost"</value>
+      <value>"127.0.0.1"</value>
     </param>
   </block>
   <block>
@@ -584,7 +584,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>137.62e6</value>
+      <value>144.39e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1626,7 +1626,7 @@
     </param>
     <param>
       <key>samples_per_second</key>
-      <value>rf_rx_rate</value>
+      <value>1e6</value>
     </param>
     <param>
       <key>type</key>
@@ -1685,7 +1685,7 @@
     </param>
     <param>
       <key>eof</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>vlen</key>
