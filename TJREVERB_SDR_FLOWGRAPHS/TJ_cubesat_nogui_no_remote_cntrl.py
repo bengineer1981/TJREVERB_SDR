@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: TJ Cubesat No Gui with IQ streaming
+# Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 05:28:50 2019
+# Generated: Sun Feb  3 05:29:13 2019
 ##################################################
 
 import os
@@ -19,21 +19,18 @@ from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio import uhd
-from gnuradio import zeromq
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import SimpleXMLRPCServer
 import afsk
 import bruninga
-import threading
 import time
 
 
-class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
+class TJ_cubesat_nogui_no_remote_cntrl(gr.top_block):
 
     def __init__(self):
-        gr.top_block.__init__(self, "TJ Cubesat No Gui with IQ streaming")
+        gr.top_block.__init__(self, "TJ Cubesat No Gui")
 
         ##################################################
         # Variables
@@ -47,10 +44,6 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.preamble_len = preamble_len = 300
         self.gain = gain = 40
         self.freq = freq = 144.39e6
-        self.cubesat_zmq_port_4 = cubesat_zmq_port_4 = "5504"
-        self.cubesat_zmq_port_3 = cubesat_zmq_port_3 = "5503"
-        self.cubesat_zmq_port_2 = cubesat_zmq_port_2 = "5502"
-        self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5501"
         self.cubesat_port_2 = cubesat_port_2 = "5558"
         self.cubesat_port_1 = cubesat_port_1 = "5556"
         self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.10"
@@ -62,15 +55,6 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_4, 100, False, -1)
-        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_3, 100, False, -1)
-        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_2, 100, False, -1)
-        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_1, 100, False, -1)
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
-        self.xmlrpc_server_0.register_instance(self)
-        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
-        self.xmlrpc_server_0_thread.daemon = True
-        self.xmlrpc_server_0_thread.start()
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -117,9 +101,9 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         )
         self.bruninga_str_to_aprs_0_1 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, '127.0.0.1', int(cubesat_port_1), 1472, True)
+        self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_port_1), 1472, True)
         self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
-        self.blocks_socket_pdu_0_0_0_0 = blocks.socket_pdu("UDP_SERVER", '127.0.0.1', cubesat_port_2, 10000, False)
+        self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
         self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,
@@ -139,23 +123,19 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.blocks_socket_pdu_0_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
+        self.msg_connect((self.blocks_socket_pdu_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
         self.msg_connect((self.bruninga_str_to_aprs_0_1, 'out'), (self.bruninga_ax25_fsk_mod_0_0, 'in'))
-        self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0_0, 0))
+        self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_0_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_1_0, 0))
-        self.connect((self.analog_nbfm_rx_0, 0), (self.zeromq_push_sink_0_0_0, 0))
         self.connect((self.analog_nbfm_tx_0_0, 0), (self.rational_resampler_xxx_0_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.analog_nbfm_tx_0_0, 0))
         self.connect((self.blocks_sub_xx_0_0_0, 0), (self.afsk_ax25decode_1, 0))
         self.connect((self.bruninga_ax25_fsk_mod_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
-        self.connect((self.bruninga_ax25_fsk_mod_0_0, 0), (self.zeromq_push_sink_0_0_0_0, 0))
         self.connect((self.detectMarkSpace_0_0, 0), (self.blocks_sub_xx_0_0_0, 0))
         self.connect((self.detectMarkSpace_1_0, 0), (self.blocks_sub_xx_0_0_0, 1))
         self.connect((self.low_pass_filter_0, 0), (self.analog_nbfm_rx_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.zeromq_push_sink_0, 0))
         self.connect((self.rational_resampler_xxx_0_0_0, 0), (self.uhd_usrp_sink_0_1, 0))
-        self.connect((self.rational_resampler_xxx_0_0_0, 0), (self.zeromq_push_sink_0_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.low_pass_filter_0, 0))
 
     def get_interp(self):
@@ -228,30 +208,6 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.uhd_usrp_source_0.set_center_freq(self.freq, 0)
         self.uhd_usrp_sink_0_1.set_center_freq(self.freq, 0)
 
-    def get_cubesat_zmq_port_4(self):
-        return self.cubesat_zmq_port_4
-
-    def set_cubesat_zmq_port_4(self, cubesat_zmq_port_4):
-        self.cubesat_zmq_port_4 = cubesat_zmq_port_4
-
-    def get_cubesat_zmq_port_3(self):
-        return self.cubesat_zmq_port_3
-
-    def set_cubesat_zmq_port_3(self, cubesat_zmq_port_3):
-        self.cubesat_zmq_port_3 = cubesat_zmq_port_3
-
-    def get_cubesat_zmq_port_2(self):
-        return self.cubesat_zmq_port_2
-
-    def set_cubesat_zmq_port_2(self, cubesat_zmq_port_2):
-        self.cubesat_zmq_port_2 = cubesat_zmq_port_2
-
-    def get_cubesat_zmq_port_1(self):
-        return self.cubesat_zmq_port_1
-
-    def set_cubesat_zmq_port_1(self, cubesat_zmq_port_1):
-        self.cubesat_zmq_port_1 = cubesat_zmq_port_1
-
     def get_cubesat_port_2(self):
         return self.cubesat_port_2
 
@@ -300,7 +256,7 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.detectMarkSpace_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_cubesat_nogui_with_IQ_streaming, options=None):
+def main(top_block_cls=TJ_cubesat_nogui_no_remote_cntrl, options=None):
 
     tb = top_block_cls()
     tb.start()

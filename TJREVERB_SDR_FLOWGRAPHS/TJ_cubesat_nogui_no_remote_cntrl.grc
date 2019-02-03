@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_cubesat_nogui</value>
+      <value>TJ_cubesat_nogui_no_remote_cntrl</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -3520,41 +3520,6 @@ flowgraph on same machine</value>
     <param>
       <key>otw</key>
       <value></value>
-    </param>
-  </block>
-  <block>
-    <key>xmlrpc_server</key>
-    <param>
-      <key>addr</key>
-      <value>''</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(224, 420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>xmlrpc_server_0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>1234</value>
     </param>
   </block>
   <connection>

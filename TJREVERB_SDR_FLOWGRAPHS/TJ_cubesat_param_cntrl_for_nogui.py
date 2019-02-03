@@ -5,7 +5,7 @@
 # Title: TJ Cubesat Parameter Control (no GUI)
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sat Feb  2 17:43:56 2019
+# Generated: Sun Feb  3 05:30:07 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -31,7 +31,7 @@ import xmlrpclib
 from gnuradio import qtgui
 
 
-class TJ_cubesat_UHD_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
+class TJ_cubesat_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "TJ Cubesat Parameter Control (no GUI)")
@@ -54,7 +54,7 @@ class TJ_cubesat_UHD_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_param_cntrl_for_nogui")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_param_cntrl_for_nogui")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
@@ -156,7 +156,7 @@ class TJ_cubesat_UHD_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setColumnStretch(c, 1)
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_UHD_param_cntrl_for_nogui")
+        self.settings = Qt.QSettings("GNU Radio", "TJ_cubesat_param_cntrl_for_nogui")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -209,7 +209,7 @@ class TJ_cubesat_UHD_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
         self.xmlrpc_client1_0_0_0_0.set_audio_line_driver(self.audio_line_driver)
 
 
-def main(top_block_cls=TJ_cubesat_UHD_param_cntrl_for_nogui, options=None):
+def main(top_block_cls=TJ_cubesat_param_cntrl_for_nogui, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

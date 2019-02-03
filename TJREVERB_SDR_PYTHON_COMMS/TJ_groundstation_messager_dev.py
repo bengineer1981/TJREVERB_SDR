@@ -46,15 +46,27 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1) # Allow incoming broadca
 s.setblocking(False) # Set socket to non-blocking mode
 s.bind(('', RX_PORT)) #Accept Connections on port
 print "Accepting connections on port", RX_PORT
- 
+print "WELCOME TO TJ REVERB GROUNDSTATION COMMUNICATOR"
+print "type anything you want, but preset commands you can use are:\n'hello_tj'\n'get_sat_time'\n'noop'"
 while 1:
+    msg = False
     try:
-        message, address = s.recvfrom(1024) # Buffer size is 8192. Change as needed.
-        if message:
-            print address, "> ", message
+        msg, address = s.recvfrom(1024) # Buffer size is 8192. Change as needed.
     except:
         pass
- 
-    input = getLine();
-    if(input != False):
-        s.sendto(input, send_address)
+    if msg:
+        print "%"*80+"\n"
+        print "Complete Received Message from Groundstation:", msg
+        print "%"*80+"\n"
+        delimiter = "pid=F0"
+        scan_len = len(delimiter)   
+        if delimiter in msg:
+            indx = msg.find(delimiter)+scan_len
+            srchstr = msg[indx:len(msg)]
+            print "found delimiter:", delimiter
+            print "extracted message from cubesat:%s" % srchstr
+    else:
+        input = getLine();
+        if(input != False):
+            print "sending this message to TJREVERB:",input
+            s.sendto(input, send_address)

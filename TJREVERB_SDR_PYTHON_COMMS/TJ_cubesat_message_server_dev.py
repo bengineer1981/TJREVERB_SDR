@@ -47,6 +47,7 @@ s.setblocking(False) # Set socket to non-blocking mode
 s.bind(('', RX_PORT)) #Accept Connections on port
 print "Accepting connections on port", RX_PORT
 beacon_intvl = 10.0
+bcn_num = 0
 msg_num = 0
 timer = time.time()+beacon_intvl
 print "beacon interval set to: ", beacon_intvl
@@ -58,41 +59,45 @@ while 1:
     except:
         pass
     if msg:
-        print "%"*80+"\n"+"%"*80
+        print "%"*80+"\n"
         print "Complete Received Message from Groundstation:", msg
-        print "%"*80+"\n"+"%"*80
+        print "%"*80+"\n"
         print "begin delimiter search"
         delimiter = "pid=F0"
         scan_len = len(delimiter)   
         if delimiter in msg:
-            indx = msg.find(delimiter)
+            indx = msg.find(delimiter)+scan_len
             srchstr = msg[indx:len(msg)]
-            print "found delimiter: %s at index:%d" % (delimiter,indx)
-            print "%"*80+"\n"+"%"*80
+            print "found delimiter:", delimiter
             print "extracted message from groundstation:%s" % srchstr
-            print "%"*80+"\n"+"%"*80
             if "hello_tj" in srchstr:
                 msg_back = "hello_groundstation_my_time_is:%s" % time.strftime("%a%d%b%Y%H:%M:%S", time.gmtime())
                 s.sendto(msg_back+' ', send_address)
                 print "sent:", msg_back
+                msg_num+=1
             elif "get_sat_time" in srchstr:
                 msg_back = time.strftime("%a%d%b%Y%H:%M:%S", time.gmtime())    
                 s.sendto(msg_back+' ', send_address)
                 print "sent:", msg_back
+                msg_num+=1
             elif "noop" in srchstr:
                 msg_back = "noop"
                 s.sendto(msg_back+' ', send_address)
                 print "sent:", msg_back
+                msg_num+=1
             else:#no set message, just send back whatever was rx'd 
                 msg_back = srchstr
                 s.sendto(msg_back+' ', send_address)
-                print "sent reply to groundstation:\n", msg_back
+                print "sent reply to groundstation:", msg_back
+                msg_num+=1
         else:
             "no delimiter found"
+#if theres no message present and it's time (or past time) send a beacon
     elif time.time() >= timer:
         beacon = "BEACON TIME:%s" % time.strftime("%a%d%b%Y%H:%M:%S", time.gmtime())
         s.sendto(beacon+' ', send_address)
-        print "sent beacon:", beacon
-        timer = time.time()+beacon_intvl
+        print "sent beacon#:%d with content:%s" % (bcn_num,beacon)
+        bcn_num+=1
+        timer = time.time()+beacon_intvl #reset beacon timer
     else:
         "nothing to do"
