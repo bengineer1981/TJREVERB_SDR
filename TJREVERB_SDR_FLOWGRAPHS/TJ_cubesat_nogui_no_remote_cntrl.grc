@@ -587,7 +587,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 180)</value>
+      <value>(728, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3538,7 +3538,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>

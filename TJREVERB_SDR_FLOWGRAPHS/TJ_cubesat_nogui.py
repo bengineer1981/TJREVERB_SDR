@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sat Feb  2 20:01:09 2019
+# Generated: Sat Feb  2 20:24:04 2019
 ##################################################
 
 import os
@@ -14,7 +14,6 @@ sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnura
 
 from detectMarkSpace import detectMarkSpace  # grc-generated hier_block
 from gnuradio import analog
-from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import filter
@@ -23,10 +22,8 @@ from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import SimpleXMLRPCServer
 import afsk
 import bruninga
-import threading
 import time
 
 
@@ -58,11 +55,6 @@ class TJ_cubesat_nogui(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
-        self.xmlrpc_server_0.register_instance(self)
-        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
-        self.xmlrpc_server_0_thread.daemon = True
-        self.xmlrpc_server_0_thread.start()
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -113,7 +105,6 @@ class TJ_cubesat_nogui(gr.top_block):
         self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
         self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
-        self.audio_sink_0 = audio.sink(audio_rate, 'hw:1,0', True)
         self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,
         	quad_rate=audio_rate,
@@ -135,7 +126,6 @@ class TJ_cubesat_nogui(gr.top_block):
         self.msg_connect((self.blocks_socket_pdu_0_0_0, 'pdus'), (self.bruninga_str_to_aprs_0_1, 'in'))
         self.msg_connect((self.bruninga_str_to_aprs_0_1, 'out'), (self.bruninga_ax25_fsk_mod_0_0, 'in'))
         self.connect((self.afsk_ax25decode_1, 0), (self.blocks_udp_sink_0, 0))
-        self.connect((self.analog_nbfm_rx_0, 0), (self.audio_sink_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_0_0, 0))
         self.connect((self.analog_nbfm_rx_0, 0), (self.detectMarkSpace_1_0, 0))
         self.connect((self.analog_nbfm_tx_0_0, 0), (self.rational_resampler_xxx_0_0_0, 0))
