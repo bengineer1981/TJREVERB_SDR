@@ -220,8 +220,11 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>this should be the IP address of the cubesat's
+      <value>Used to send streaming IQ back to the 
+groundstation via IP. Value should be the
+ IP address of the cubesat's
 network-facing IP interface
+(i.e. 192.168.1.10)
 only use 'localhost' if testing controller
 flowgraph on same machine</value>
     </param>
@@ -239,7 +242,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>id</key>
-      <value>cubesat_ip_addr</value>
+      <value>cubesat_ext_ip_addr</value>
     </param>
     <param>
       <key>value</key>
@@ -3670,7 +3673,7 @@ used only for debugging</value>
     <key>zeromq_push_sink</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_1</value>
+      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_1</value>
     </param>
     <param>
       <key>alias</key>
@@ -3725,7 +3728,7 @@ used only for debugging</value>
     <key>zeromq_push_sink</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_2</value>
+      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_2</value>
     </param>
     <param>
       <key>alias</key>
@@ -3780,7 +3783,7 @@ used only for debugging</value>
     <key>zeromq_push_sink</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_3</value>
+      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_3</value>
     </param>
     <param>
       <key>alias</key>
@@ -3835,7 +3838,7 @@ used only for debugging</value>
     <key>zeromq_push_sink</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_4</value>
+      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_4</value>
     </param>
     <param>
       <key>alias</key>

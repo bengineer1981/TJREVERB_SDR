@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 05:28:50 2019
+# Generated: Sun Feb  3 06:05:29 2019
 ##################################################
 
 import os
@@ -53,7 +53,7 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.cubesat_zmq_port_1 = cubesat_zmq_port_1 = "5501"
         self.cubesat_port_2 = cubesat_port_2 = "5558"
         self.cubesat_port_1 = cubesat_port_1 = "5556"
-        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.10"
+        self.cubesat_ext_ip_addr = cubesat_ext_ip_addr = "192.168.1.10"
         self.baud_rate = baud_rate = 1200
         self.audio_line_driver = audio_line_driver = .8
         self.Decay = Decay = 0.8
@@ -62,10 +62,10 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_4, 100, False, -1)
-        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_3, 100, False, -1)
-        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_2, 100, False, -1)
-        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ip_addr+":"+cubesat_zmq_port_1, 100, False, -1)
+        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_4, 100, False, -1)
+        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_3, 100, False, -1)
+        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_2, 100, False, -1)
+        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_1, 100, False, -1)
         self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
         self.xmlrpc_server_0.register_instance(self)
         self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
@@ -264,11 +264,11 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
     def set_cubesat_port_1(self, cubesat_port_1):
         self.cubesat_port_1 = cubesat_port_1
 
-    def get_cubesat_ip_addr(self):
-        return self.cubesat_ip_addr
+    def get_cubesat_ext_ip_addr(self):
+        return self.cubesat_ext_ip_addr
 
-    def set_cubesat_ip_addr(self, cubesat_ip_addr):
-        self.cubesat_ip_addr = cubesat_ip_addr
+    def set_cubesat_ext_ip_addr(self, cubesat_ext_ip_addr):
+        self.cubesat_ext_ip_addr = cubesat_ext_ip_addr
 
     def get_baud_rate(self):
         return self.baud_rate

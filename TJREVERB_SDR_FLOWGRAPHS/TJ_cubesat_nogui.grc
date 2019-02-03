@@ -220,10 +220,7 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>this should be the IP address of the cubesat's
-network-facing IP interface
-only use 'localhost' if testing controller
-flowgraph on same machine</value>
+      <value>this should be the local IP address of the cubesat</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -239,11 +236,11 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>id</key>
-      <value>cubesat_ip_addr</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>value</key>
-      <value>"192.168.1.10"</value>
+      <value>"127.0.0.1"</value>
     </param>
   </block>
   <block>
@@ -803,7 +800,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>host</key>
-      <value>cubesat_ip_addr</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>id</key>
@@ -901,7 +898,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>ipaddr</key>
-      <value>cubesat_ip_addr</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>port</key>

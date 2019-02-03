@@ -56,7 +56,7 @@ while 1:
         pass
     if msg:
         print "%"*80+"\n"
-        print "Complete Received Message from Groundstation:", msg
+        print "Complete Received Message from Cubesat:", msg
         print "%"*80+"\n"
         delimiter = "pid=F0"
         scan_len = len(delimiter)   
@@ -65,8 +65,8 @@ while 1:
             srchstr = msg[indx:len(msg)]
             print "found delimiter:", delimiter
             print "extracted message from cubesat:%s" % srchstr
-    else:
-        input = getLine();
-        if(input != False):
-            print "sending this message to TJREVERB:",input
-            s.sendto(input, send_address)
+
+    input = getLine();
+    if(input != False):
+        print "sending this message to TJREVERB:",input
+        s.sendto(input, send_address)

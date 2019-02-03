@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 05:29:14 2019
+# Generated: Sun Feb  3 06:05:27 2019
 ##################################################
 
 import os
@@ -48,7 +48,7 @@ class TJ_cubesat_nogui(gr.top_block):
         self.freq = freq = 144.39e6
         self.cubesat_port_2 = cubesat_port_2 = "5558"
         self.cubesat_port_1 = cubesat_port_1 = "5556"
-        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.10"
+        self.cubesat_local_ip_addr = cubesat_local_ip_addr = "127.0.0.1"
         self.baud_rate = baud_rate = 1200
         self.audio_line_driver = audio_line_driver = .8
         self.Decay = Decay = 0.8
@@ -108,9 +108,9 @@ class TJ_cubesat_nogui(gr.top_block):
         )
         self.bruninga_str_to_aprs_0_1 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_ip_addr, int(cubesat_port_1), 1472, True)
+        self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_char*1, cubesat_local_ip_addr, int(cubesat_port_1), 1472, True)
         self.blocks_sub_xx_0_0_0 = blocks.sub_ff(1)
-        self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_ip_addr, cubesat_port_2, 10000, False)
+        self.blocks_socket_pdu_0_0_0 = blocks.socket_pdu("UDP_SERVER", cubesat_local_ip_addr, cubesat_port_2, 10000, False)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vff((audio_line_driver, ))
         self.analog_nbfm_tx_0_0 = analog.nbfm_tx(
         	audio_rate=audio_rate,
@@ -227,11 +227,11 @@ class TJ_cubesat_nogui(gr.top_block):
     def set_cubesat_port_1(self, cubesat_port_1):
         self.cubesat_port_1 = cubesat_port_1
 
-    def get_cubesat_ip_addr(self):
-        return self.cubesat_ip_addr
+    def get_cubesat_local_ip_addr(self):
+        return self.cubesat_local_ip_addr
 
-    def set_cubesat_ip_addr(self, cubesat_ip_addr):
-        self.cubesat_ip_addr = cubesat_ip_addr
+    def set_cubesat_local_ip_addr(self, cubesat_local_ip_addr):
+        self.cubesat_local_ip_addr = cubesat_local_ip_addr
 
     def get_baud_rate(self):
         return self.baud_rate
