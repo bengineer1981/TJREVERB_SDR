@@ -228,7 +228,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 380)</value>
+      <value>(376, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -584,7 +584,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 180)</value>
+      <value>(728, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3517,41 +3517,6 @@
     <param>
       <key>otw</key>
       <value></value>
-    </param>
-  </block>
-  <block>
-    <key>xmlrpc_server</key>
-    <param>
-      <key>addr</key>
-      <value>''</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(224, 420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>xmlrpc_server_0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>1234</value>
     </param>
   </block>
   <connection>

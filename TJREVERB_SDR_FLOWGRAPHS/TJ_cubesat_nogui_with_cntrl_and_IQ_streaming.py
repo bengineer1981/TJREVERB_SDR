@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui with IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 06:05:29 2019
+# Generated: Sun Feb  3 15:20:28 2019
 ##################################################
 
 import os
@@ -30,7 +30,7 @@ import threading
 import time
 
 
-class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
+class TJ_cubesat_nogui_with_cntrl_and_IQ_streaming(gr.top_block):
 
     def __init__(self):
         gr.top_block.__init__(self, "TJ Cubesat No Gui with IQ streaming")
@@ -300,7 +300,7 @@ class TJ_cubesat_nogui_with_IQ_streaming(gr.top_block):
         self.detectMarkSpace_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_cubesat_nogui_with_IQ_streaming, options=None):
+def main(top_block_cls=TJ_cubesat_nogui_with_cntrl_and_IQ_streaming, options=None):
 
     tb = top_block_cls()
     tb.start()

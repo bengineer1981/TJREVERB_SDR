@@ -55,9 +55,9 @@ while 1:
     except:
         pass
     if msg:
-        print "%"*80+"\n"
-        print "Complete Received Message from Cubesat:", msg
-        print "%"*80+"\n"
+        print "%"*80
+        print "Complete Received Message from Cubesat:\n", msg
+        print "%"*80
         delimiter = "pid=F0"
         scan_len = len(delimiter)   
         if delimiter in msg:
@@ -65,7 +65,7 @@ while 1:
             srchstr = msg[indx:len(msg)]
             print "found delimiter:", delimiter
             print "extracted message from cubesat:%s" % srchstr
-
+            print "%"*80
     input = getLine();
     if(input != False):
         print "sending this message to TJREVERB:",input

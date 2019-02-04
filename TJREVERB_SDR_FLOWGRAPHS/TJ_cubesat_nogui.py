@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 06:05:27 2019
+# Generated: Sun Feb  3 15:20:31 2019
 ##################################################
 
 import os
@@ -22,10 +22,8 @@ from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import SimpleXMLRPCServer
 import afsk
 import bruninga
-import threading
 import time
 
 
@@ -57,11 +55,6 @@ class TJ_cubesat_nogui(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
-        self.xmlrpc_server_0.register_instance(self)
-        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
-        self.xmlrpc_server_0_thread.daemon = True
-        self.xmlrpc_server_0_thread.start()
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(

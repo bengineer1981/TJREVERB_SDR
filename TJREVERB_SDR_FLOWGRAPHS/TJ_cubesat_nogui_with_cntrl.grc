@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>TJ_cubesat_nogui_with_IQ_streaming</value>
+      <value>TJ_cubesat_nogui_with_cntrl</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Cubesat No Gui with IQ streaming</value>
+      <value>TJ Cubesat No Gui</value>
     </param>
   </block>
   <block>
@@ -147,7 +147,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 580)</value>
+      <value>(872, 620)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -201,7 +201,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(984, 428)</value>
+      <value>(1160, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -220,13 +220,7 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>Used to send streaming IQ back to the 
-groundstation via IP. Value should be the
- IP address of the cubesat's
-network-facing IP interface
-(i.e. 192.168.1.10)
-only use 'localhost' if testing controller
-flowgraph on same machine</value>
+      <value>this should be the local IP address of the cubesat</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -234,7 +228,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 380)</value>
+      <value>(360, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -242,11 +236,11 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>id</key>
-      <value>cubesat_ext_ip_addr</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>value</key>
-      <value>"192.168.1.10"</value>
+      <value>"127.0.0.1"</value>
     </param>
   </block>
   <block>
@@ -261,7 +255,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(416, 308)</value>
+      <value>(368, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -288,7 +282,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1424, 612)</value>
+      <value>(1424, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -307,114 +301,6 @@ flowgraph on same machine</value>
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>use port value 5500-5599</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(304, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>cubesat_zmq_port_1</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"5501"</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>use port value 5500-5599</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(448, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>cubesat_zmq_port_2</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"5502"</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>use port value 5500-5599</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(608, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>cubesat_zmq_port_3</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"5503"</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>use port value 5500-5599</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(776, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>cubesat_zmq_port_4</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"5504"</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
       <value></value>
     </param>
     <param>
@@ -423,7 +309,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 308)</value>
+      <value>(40, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -504,7 +390,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1072, 428)</value>
+      <value>(1048, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -612,7 +498,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 540)</value>
+      <value>(88, 580)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -651,7 +537,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 308)</value>
+      <value>(808, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -753,7 +639,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 500)</value>
+      <value>(624, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -796,8 +682,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>comment</key>
-      <value>disabled by default
-used only for debugging</value>
+      <value></value>
     </param>
     <param>
       <key>affinity</key>
@@ -813,7 +698,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1256, 68)</value>
+      <value>(1096, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -860,7 +745,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 532)</value>
+      <value>(880, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -907,7 +792,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1424, 508)</value>
+      <value>(1432, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -915,11 +800,11 @@ used only for debugging</value>
     </param>
     <param>
       <key>host</key>
-      <value>127.0.0.1</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>id</key>
-      <value>blocks_socket_pdu_0_0_0_0</value>
+      <value>blocks_socket_pdu_0_0_0</value>
     </param>
     <param>
       <key>mtu</key>
@@ -966,7 +851,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 304)</value>
+      <value>(968, 280)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1013,7 +898,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>ipaddr</key>
-      <value>127.0.0.1</value>
+      <value>cubesat_local_ip_addr</value>
     </param>
     <param>
       <key>port</key>
@@ -1025,7 +910,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(544, 292)</value>
+      <value>(504, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1033,7 +918,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>id</key>
-      <value>blocks_udp_sink_0_0</value>
+      <value>blocks_udp_sink_0</value>
     </param>
     <param>
       <key>type</key>
@@ -1080,7 +965,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(984, 492)</value>
+      <value>(1056, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1139,7 +1024,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1240, 516)</value>
+      <value>(1288, 556)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1379,7 +1264,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 508)</value>
+      <value>(424, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2144,7 +2029,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(104, 508)</value>
+      <value>(176, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3654,7 +3539,7 @@ used only for debugging</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 308)</value>
+      <value>(224, 420)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3669,229 +3554,9 @@ used only for debugging</value>
       <value>1234</value>
     </param>
   </block>
-  <block>
-    <key>zeromq_push_sink</key>
-    <param>
-      <key>address</key>
-      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_1</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(728, 100)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hwm</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>zeromq_push_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>pass_tags</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>timeout</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>zeromq_push_sink</key>
-    <param>
-      <key>address</key>
-      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_2</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(352, 612)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hwm</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>zeromq_push_sink_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>pass_tags</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>timeout</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>zeromq_push_sink</key>
-    <param>
-      <key>address</key>
-      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_3</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1096, 132)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hwm</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>zeromq_push_sink_0_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>pass_tags</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>timeout</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>zeromq_push_sink</key>
-    <param>
-      <key>address</key>
-      <value>"tcp://"+cubesat_ext_ip_addr+":"+cubesat_zmq_port_4</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 620)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hwm</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>zeromq_push_sink_0_0_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>pass_tags</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>timeout</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
   <connection>
     <source_block_id>afsk_ax25decode_1</source_block_id>
-    <sink_block_id>blocks_udp_sink_0_0</sink_block_id>
+    <sink_block_id>blocks_udp_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3914,12 +3579,6 @@ used only for debugging</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>analog_nbfm_rx_0</source_block_id>
-    <sink_block_id>zeromq_push_sink_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>analog_nbfm_tx_0_0</source_block_id>
     <sink_block_id>rational_resampler_xxx_0_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -3932,7 +3591,7 @@ used only for debugging</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_socket_pdu_0_0_0_0</source_block_id>
+    <source_block_id>blocks_socket_pdu_0_0_0</source_block_id>
     <sink_block_id>bruninga_str_to_aprs_0_1</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>in</sink_key>
@@ -3946,12 +3605,6 @@ used only for debugging</value>
   <connection>
     <source_block_id>bruninga_ax25_fsk_mod_0_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>bruninga_ax25_fsk_mod_0_0</source_block_id>
-    <sink_block_id>zeromq_push_sink_0_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3980,20 +3633,8 @@ used only for debugging</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>low_pass_filter_0</source_block_id>
-    <sink_block_id>zeromq_push_sink_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>rational_resampler_xxx_0_0_0</source_block_id>
     <sink_block_id>uhd_usrp_sink_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rational_resampler_xxx_0_0_0</source_block_id>
-    <sink_block_id>zeromq_push_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
