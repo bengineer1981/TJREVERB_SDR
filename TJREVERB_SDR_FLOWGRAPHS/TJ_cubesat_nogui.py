@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 15:20:31 2019
+# Generated: Tue Feb  5 16:46:44 2019
 ##################################################
 
 import os
@@ -260,11 +260,6 @@ def main(top_block_cls=TJ_cubesat_nogui, options=None):
 
     tb = top_block_cls()
     tb.start()
-    try:
-        raw_input('Press Enter to quit: ')
-    except EOFError:
-        pass
-    tb.stop()
     tb.wait()
 
 
