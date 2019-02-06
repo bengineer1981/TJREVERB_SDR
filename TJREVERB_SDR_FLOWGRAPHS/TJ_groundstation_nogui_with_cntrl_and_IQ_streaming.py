@@ -5,7 +5,7 @@
 # Title: TJ Groundstation No Gui with Control and IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Wed Feb  6 01:22:26 2019
+# Generated: Wed Feb  6 01:43:07 2019
 ##################################################
 
 import os
@@ -49,7 +49,7 @@ class TJ_groundstation_nogui_with_cntrl_and_IQ_streaming(gr.top_block):
         self.groundstation_zmq_port_1 = groundstation_zmq_port_1 = "5501"
         self.groundstation_port_2 = groundstation_port_2 = "5557"
         self.groundstation_port_1 = groundstation_port_1 = "5555"
-        self.groundstation_ip_addr = groundstation_ip_addr = "127.0.0.1"
+        self.groundstation_ip_addr = groundstation_ip_addr = "192.168.1.10"
         self.gain = gain = 40
         self.freq = freq = 144.39e6
         self.baud_rate = baud_rate = 1200
@@ -60,10 +60,10 @@ class TJ_groundstation_nogui_with_cntrl_and_IQ_streaming(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, '"tcp://"+cubesat_ext_ip_addr+":"+groundstation_zmq_port_4', 100, False, -1)
-        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, '"tcp://"+cubesat_ext_ip_addr+":"+groundstation_zmq_port_3', 100, False, -1)
-        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, '"tcp://"+cubesat_ext_ip_addr+":"+groundstation_zmq_port_2', 100, False, -1)
-        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, '"tcp://"+cubesat_ext_ip_addr+":"+groundstation_zmq_port_1', 100, False, -1)
+        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_4, 100, False, -1)
+        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_3, 100, False, -1)
+        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_2, 100, False, -1)
+        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_1, 100, False, -1)
         self.uhd_usrp_source_0_1 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(

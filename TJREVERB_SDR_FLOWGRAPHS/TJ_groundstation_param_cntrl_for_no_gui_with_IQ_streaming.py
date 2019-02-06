@@ -5,7 +5,7 @@
 # Title: TJ Groundstation Parameter Control (no GUI with IQ Streaming)
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Wed Feb  6 01:24:17 2019
+# Generated: Wed Feb  6 01:41:55 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -107,10 +107,10 @@ class TJ_groundstation_param_cntrl_for_no_gui_with_IQ_streaming(gr.top_block, Qt
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.zeromq_pull_source_0_0_0_0 = zeromq.pull_source(gr.sizeof_float, 1, '"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_4', 100, False, -1)
-        self.zeromq_pull_source_0_0_0 = zeromq.pull_source(gr.sizeof_float, 1, '"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_3', 100, False, -1)
-        self.zeromq_pull_source_0_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, '"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_2', 100, False, -1)
-        self.zeromq_pull_source_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, '"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_1', 100, False, -1)
+        self.zeromq_pull_source_0_0_0_0 = zeromq.pull_source(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_4, 100, False, -1)
+        self.zeromq_pull_source_0_0_0 = zeromq.pull_source(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_3, 100, False, -1)
+        self.zeromq_pull_source_0_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_2, 100, False, -1)
+        self.zeromq_pull_source_0 = zeromq.pull_source(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_1, 100, False, -1)
         self.xmlrpc_client1_1 = xmlrpclib.Server('http://cubesat_ip_addr:1234')
         self.xmlrpc_client1_0_1 = xmlrpclib.Server('http://cubesat_ip_addr:1234')
         self.xmlrpc_client1_0_0_1 = xmlrpclib.Server('http://cubesat_ip_addr:1234')

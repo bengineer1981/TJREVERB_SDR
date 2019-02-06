@@ -2814,7 +2814,7 @@ flowgraph on same machine</value>
     <key>zeromq_pull_source</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_1</value>
+      <value>"tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_1</value>
     </param>
     <param>
       <key>alias</key>
@@ -2878,7 +2878,7 @@ flowgraph on same machine</value>
     <key>zeromq_pull_source</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_2</value>
+      <value>"tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_2</value>
     </param>
     <param>
       <key>alias</key>
@@ -2942,7 +2942,7 @@ flowgraph on same machine</value>
     <key>zeromq_pull_source</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_3</value>
+      <value>"tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_3</value>
     </param>
     <param>
       <key>alias</key>
@@ -3005,7 +3005,7 @@ flowgraph on same machine</value>
     <key>zeromq_pull_source</key>
     <param>
       <key>address</key>
-      <value>"tcp://"+cubesat_ip_addr+":"+groundstation_zmq_port_4</value>
+      <value>"tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_4</value>
     </param>
     <param>
       <key>alias</key>
