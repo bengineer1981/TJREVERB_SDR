@@ -274,8 +274,8 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>IP address of remote groundstation
-network interface</value>
+      <value>IP address of groundstation
+remote control network interface</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -302,7 +302,7 @@ network interface</value>
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>IP address of remote groundstation
+      <value>IP address of groundstation
 network interface</value>
     </param>
     <param>
