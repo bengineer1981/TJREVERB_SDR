@@ -1100,7 +1100,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1424, 236)</value>
+      <value>(1408, 236)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2336,7 +2336,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1424, 156)</value>
+      <value>(1408, 156)</value>
     </param>
     <param>
       <key>gui_hint</key>

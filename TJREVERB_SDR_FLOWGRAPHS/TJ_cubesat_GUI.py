@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: TJ Dev Modem
+# Title: TJ Cubesat GUI
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Sun Feb  3 05:29:32 2019
+# Generated: Wed Feb  6 02:54:37 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -47,9 +47,9 @@ from gnuradio import qtgui
 class TJ_cubesat_GUI(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "TJ Dev Modem")
+        gr.top_block.__init__(self, "TJ Cubesat GUI")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("TJ Dev Modem")
+        self.setWindowTitle("TJ Cubesat GUI")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -74,7 +74,7 @@ class TJ_cubesat_GUI(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.interp = interp = 4
-        self.freq_chooser = freq_chooser = 137.62e6
+        self.freq_chooser = freq_chooser = 144.39e6
         self.audio_rate = audio_rate = 48000
         self.tx_gain = tx_gain = 10
         self.rx_downsamp_bw = rx_downsamp_bw = 10000

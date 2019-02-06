@@ -5,7 +5,7 @@
 # Title: TJ Groundstation No Gui with Control
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Wed Feb  6 00:53:06 2019
+# Generated: Wed Feb  6 03:10:20 2019
 ##################################################
 
 import os
@@ -29,7 +29,7 @@ import threading
 import time
 
 
-class TJ_groundstation_nogui_with_control(gr.top_block):
+class TJ_groundstation_nogui_with_cntrl(gr.top_block):
 
     def __init__(self):
         gr.top_block.__init__(self, "TJ Groundstation No Gui with Control")
@@ -46,7 +46,9 @@ class TJ_groundstation_nogui_with_control(gr.top_block):
         self.preamble_len = preamble_len = 300
         self.groundstation_port_2 = groundstation_port_2 = "5557"
         self.groundstation_port_1 = groundstation_port_1 = "5555"
+        self.groundstation_ip_addr_0 = groundstation_ip_addr_0 = "192.168.1.10"
         self.groundstation_ip_addr = groundstation_ip_addr = "127.0.0.1"
+        self.groundstation_controller_ip = groundstation_controller_ip = "192.268.1.3"
         self.gain = gain = 40
         self.freq = freq = 144.39e6
         self.baud_rate = baud_rate = 1200
@@ -108,7 +110,7 @@ class TJ_groundstation_nogui_with_control(gr.top_block):
         )
         self.bruninga_str_to_aprs_0 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_ip_addr, int(groundstation_port_2), 1472, True)
+        self.blocks_udp_sink_0_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_controller_ip, int(groundstation_port_2), 1472, True)
         self.blocks_sub_xx_0_0_0_0 = blocks.sub_ff(1)
         self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_SERVER", groundstation_ip_addr, groundstation_port_1, 10000, False)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.8, ))
@@ -132,7 +134,7 @@ class TJ_groundstation_nogui_with_control(gr.top_block):
         ##################################################
         self.msg_connect((self.blocks_socket_pdu_0_0, 'pdus'), (self.bruninga_str_to_aprs_0, 'in'))
         self.msg_connect((self.bruninga_str_to_aprs_0, 'out'), (self.bruninga_ax25_fsk_mod_0, 'in'))
-        self.connect((self.afsk_ax25decode_1_0, 0), (self.blocks_udp_sink_0_0, 0))
+        self.connect((self.afsk_ax25decode_1_0, 0), (self.blocks_udp_sink_0_0_0, 0))
         self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_0_0_0, 0))
         self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_1_0_0, 0))
         self.connect((self.analog_nbfm_tx_0, 0), (self.rational_resampler_xxx_0_0, 0))
@@ -211,11 +213,23 @@ class TJ_groundstation_nogui_with_control(gr.top_block):
     def set_groundstation_port_1(self, groundstation_port_1):
         self.groundstation_port_1 = groundstation_port_1
 
+    def get_groundstation_ip_addr_0(self):
+        return self.groundstation_ip_addr_0
+
+    def set_groundstation_ip_addr_0(self, groundstation_ip_addr_0):
+        self.groundstation_ip_addr_0 = groundstation_ip_addr_0
+
     def get_groundstation_ip_addr(self):
         return self.groundstation_ip_addr
 
     def set_groundstation_ip_addr(self, groundstation_ip_addr):
         self.groundstation_ip_addr = groundstation_ip_addr
+
+    def get_groundstation_controller_ip(self):
+        return self.groundstation_controller_ip
+
+    def set_groundstation_controller_ip(self, groundstation_controller_ip):
+        self.groundstation_controller_ip = groundstation_controller_ip
 
     def get_gain(self):
         return self.gain
@@ -262,7 +276,7 @@ class TJ_groundstation_nogui_with_control(gr.top_block):
         self.detectMarkSpace_0_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_groundstation_nogui_with_control, options=None):
+def main(top_block_cls=TJ_groundstation_nogui_with_cntrl, options=None):
 
     tb = top_block_cls()
     tb.start()

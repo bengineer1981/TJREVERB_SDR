@@ -283,7 +283,35 @@ network interface</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 364)</value>
+      <value>(208, 564)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>groundstation_controller_ip</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"192.268.1.3"</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value>IP address of remote groundstation
+network interface</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(208, 260)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -960,7 +988,7 @@ network interface</value>
     </param>
     <param>
       <key>ipaddr</key>
-      <value>groundstation_ip_addr</value>
+      <value>groundstation_controller_ip</value>
     </param>
     <param>
       <key>port</key>

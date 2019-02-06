@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Dev Modem</value>
+      <value>TJ Cubesat GUI</value>
     </param>
   </block>
   <block>
@@ -405,7 +405,7 @@ IP address</value>
     </param>
     <param>
       <key>value</key>
-      <value>137.62e6</value>
+      <value>144.39e6</value>
     </param>
     <param>
       <key>_enabled</key>

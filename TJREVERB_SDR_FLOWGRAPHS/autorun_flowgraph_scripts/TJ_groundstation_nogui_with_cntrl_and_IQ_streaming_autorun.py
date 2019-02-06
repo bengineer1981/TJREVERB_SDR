@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: TJ Groundstation No Gui with Control
+# Title: TJ Groundstation No Gui with Control and IQ streaming
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Wed Feb  6 00:52:32 2019
+# Generated: Wed Feb  6 03:08:45 2019
 ##################################################
 
 import os
@@ -19,20 +19,19 @@ from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio import uhd
+from gnuradio import zeromq
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import SimpleXMLRPCServer
 import afsk
 import bruninga
-import threading
 import time
 
 
-class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
+class TJ_groundstation_nogui_with_cntrl_and_IQ_streaming_autorun(gr.top_block):
 
     def __init__(self):
-        gr.top_block.__init__(self, "TJ Groundstation No Gui with Control")
+        gr.top_block.__init__(self, "TJ Groundstation No Gui with Control and IQ streaming")
 
         ##################################################
         # Variables
@@ -44,9 +43,14 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
         self.rf_tx_rate = rf_tx_rate = audio_rate*interp
         self.rf_rx_rate = rf_rx_rate = 192000
         self.preamble_len = preamble_len = 300
+        self.groundstation_zmq_port_4 = groundstation_zmq_port_4 = "5504"
+        self.groundstation_zmq_port_3 = groundstation_zmq_port_3 = "5503"
+        self.groundstation_zmq_port_2 = groundstation_zmq_port_2 = "5502"
+        self.groundstation_zmq_port_1 = groundstation_zmq_port_1 = "5501"
         self.groundstation_port_2 = groundstation_port_2 = "5557"
         self.groundstation_port_1 = groundstation_port_1 = "5555"
-        self.groundstation_ip_addr = groundstation_ip_addr = "127.0.0.1"
+        self.groundstation_ip_addr = groundstation_ip_addr = "192.168.1.10"
+        self.groundstation_controller_ip = groundstation_controller_ip = "192.268.1.3"
         self.gain = gain = 40
         self.freq = freq = 144.39e6
         self.baud_rate = baud_rate = 1200
@@ -57,11 +61,10 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
-        self.xmlrpc_server_0.register_instance(self)
-        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
-        self.xmlrpc_server_0_thread.daemon = True
-        self.xmlrpc_server_0_thread.start()
+        self.zeromq_push_sink_0_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_4, 100, False, -1)
+        self.zeromq_push_sink_0_0_0 = zeromq.push_sink(gr.sizeof_float, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_3, 100, False, -1)
+        self.zeromq_push_sink_0_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_2, 100, False, -1)
+        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_gr_complex, 1, "tcp://"+groundstation_ip_addr+":"+groundstation_zmq_port_1, 100, False, -1)
         self.uhd_usrp_source_0_1 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -108,7 +111,7 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
         )
         self.bruninga_str_to_aprs_0 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_ip_addr, int(groundstation_port_2), 1472, True)
+        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_controller_ip, int(groundstation_port_2), 1472, True)
         self.blocks_sub_xx_0_0_0_0 = blocks.sub_ff(1)
         self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_SERVER", groundstation_ip_addr, groundstation_port_1, 10000, False)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.8, ))
@@ -135,13 +138,17 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
         self.connect((self.afsk_ax25decode_1_0, 0), (self.blocks_udp_sink_0_0, 0))
         self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_0_0_0, 0))
         self.connect((self.analog_nbfm_rx_0_0, 0), (self.detectMarkSpace_1_0_0, 0))
+        self.connect((self.analog_nbfm_rx_0_0, 0), (self.zeromq_push_sink_0_0_0_0, 0))
         self.connect((self.analog_nbfm_tx_0, 0), (self.rational_resampler_xxx_0_0, 0))
+        self.connect((self.analog_nbfm_tx_0, 0), (self.zeromq_push_sink_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.analog_nbfm_tx_0, 0))
         self.connect((self.blocks_sub_xx_0_0_0_0, 0), (self.afsk_ax25decode_1_0, 0))
         self.connect((self.bruninga_ax25_fsk_mod_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.bruninga_ax25_fsk_mod_0, 0), (self.zeromq_push_sink_0_0_0, 0))
         self.connect((self.detectMarkSpace_0_0_0, 0), (self.blocks_sub_xx_0_0_0_0, 0))
         self.connect((self.detectMarkSpace_1_0_0, 0), (self.blocks_sub_xx_0_0_0_0, 1))
         self.connect((self.low_pass_filter_0_0, 0), (self.analog_nbfm_rx_0_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.zeromq_push_sink_0_0, 0))
         self.connect((self.rational_resampler_xxx_0_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.uhd_usrp_source_0_1, 0), (self.low_pass_filter_0_0, 0))
 
@@ -199,6 +206,30 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
     def set_preamble_len(self, preamble_len):
         self.preamble_len = preamble_len
 
+    def get_groundstation_zmq_port_4(self):
+        return self.groundstation_zmq_port_4
+
+    def set_groundstation_zmq_port_4(self, groundstation_zmq_port_4):
+        self.groundstation_zmq_port_4 = groundstation_zmq_port_4
+
+    def get_groundstation_zmq_port_3(self):
+        return self.groundstation_zmq_port_3
+
+    def set_groundstation_zmq_port_3(self, groundstation_zmq_port_3):
+        self.groundstation_zmq_port_3 = groundstation_zmq_port_3
+
+    def get_groundstation_zmq_port_2(self):
+        return self.groundstation_zmq_port_2
+
+    def set_groundstation_zmq_port_2(self, groundstation_zmq_port_2):
+        self.groundstation_zmq_port_2 = groundstation_zmq_port_2
+
+    def get_groundstation_zmq_port_1(self):
+        return self.groundstation_zmq_port_1
+
+    def set_groundstation_zmq_port_1(self, groundstation_zmq_port_1):
+        self.groundstation_zmq_port_1 = groundstation_zmq_port_1
+
     def get_groundstation_port_2(self):
         return self.groundstation_port_2
 
@@ -216,6 +247,12 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
 
     def set_groundstation_ip_addr(self, groundstation_ip_addr):
         self.groundstation_ip_addr = groundstation_ip_addr
+
+    def get_groundstation_controller_ip(self):
+        return self.groundstation_controller_ip
+
+    def set_groundstation_controller_ip(self, groundstation_controller_ip):
+        self.groundstation_controller_ip = groundstation_controller_ip
 
     def get_gain(self):
         return self.gain
@@ -262,7 +299,7 @@ class TJ_groundstation_nogui_with_control_autorun(gr.top_block):
         self.detectMarkSpace_0_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_groundstation_nogui_with_control_autorun, options=None):
+def main(top_block_cls=TJ_groundstation_nogui_with_cntrl_and_IQ_streaming_autorun, options=None):
 
     tb = top_block_cls()
     tb.start()

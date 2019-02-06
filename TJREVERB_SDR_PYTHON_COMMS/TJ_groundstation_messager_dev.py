@@ -11,7 +11,7 @@ def getLine():
             return input
     return False
  
-UDP_IP = "192.168.1.3"
+UDP_IP = "192.168.1.10"
 print "UDP target IP:", UDP_IP
 
 startup = 0

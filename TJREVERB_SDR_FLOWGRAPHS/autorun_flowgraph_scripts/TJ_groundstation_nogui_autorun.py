@@ -5,7 +5,7 @@
 # Title: TJ Groundstation No Gui with Control
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb AFSK Modem
-# Generated: Wed Feb  6 00:56:06 2019
+# Generated: Wed Feb  6 03:07:59 2019
 ##################################################
 
 import os
@@ -44,7 +44,8 @@ class TJ_groundstation_nogui_autorun(gr.top_block):
         self.preamble_len = preamble_len = 300
         self.groundstation_port_2 = groundstation_port_2 = "5557"
         self.groundstation_port_1 = groundstation_port_1 = "5555"
-        self.groundstation_ip_addr = groundstation_ip_addr = "127.0.0.1"
+        self.groundstation_ip_addr = groundstation_ip_addr = "192.168.1.10"
+        self.groundstation_controller_ip = groundstation_controller_ip = "192.268.1.3"
         self.gain = gain = 40
         self.freq = freq = 144.39e6
         self.baud_rate = baud_rate = 1200
@@ -101,7 +102,7 @@ class TJ_groundstation_nogui_autorun(gr.top_block):
         )
         self.bruninga_str_to_aprs_0 = bruninga.str_to_aprs('KN4DTQ', 'KN4DTQ', [])
         self.bruninga_ax25_fsk_mod_0 = bruninga.ax25_fsk_mod(audio_rate, preamble_len, 5, 2200, 1200, baud_rate)
-        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_ip_addr, int(groundstation_port_2), 1472, True)
+        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_char*1, groundstation_controller_ip, int(groundstation_port_2), 1472, True)
         self.blocks_sub_xx_0_0_0_0 = blocks.sub_ff(1)
         self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_SERVER", groundstation_ip_addr, groundstation_port_1, 10000, False)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.8, ))
@@ -209,6 +210,12 @@ class TJ_groundstation_nogui_autorun(gr.top_block):
 
     def set_groundstation_ip_addr(self, groundstation_ip_addr):
         self.groundstation_ip_addr = groundstation_ip_addr
+
+    def get_groundstation_controller_ip(self):
+        return self.groundstation_controller_ip
+
+    def set_groundstation_controller_ip(self, groundstation_controller_ip):
+        self.groundstation_controller_ip = groundstation_controller_ip
 
     def get_gain(self):
         return self.gain
