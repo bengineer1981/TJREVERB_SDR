@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>TJ Cubesat No Gui</value>
+      <value>TJ Cubesat No Gui with Control</value>
     </param>
   </block>
   <block>

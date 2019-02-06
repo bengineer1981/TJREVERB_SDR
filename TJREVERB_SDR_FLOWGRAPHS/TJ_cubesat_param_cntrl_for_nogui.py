@@ -5,7 +5,7 @@
 # Title: TJ Cubesat Parameter Control (no GUI)
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Sun Feb  3 05:30:07 2019
+# Generated: Wed Feb  6 00:38:55 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -65,16 +65,16 @@ class TJ_cubesat_param_cntrl_for_nogui(gr.top_block, Qt.QWidget):
         self.tx_gain = tx_gain = 10
         self.gain = gain = 40
         self.freq = freq = freq_chooser
-        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.23"
+        self.cubesat_ip_addr = cubesat_ip_addr = "192.168.1.10"
         self.audio_line_driver = audio_line_driver = 0.8
 
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_client1_1 = xmlrpclib.Server('http://192.168.1.23:1234')
-        self.xmlrpc_client1_0_1 = xmlrpclib.Server('http://192.168.1.23:1234')
-        self.xmlrpc_client1_0_0_1 = xmlrpclib.Server('http://192.168.1.23:1234')
-        self.xmlrpc_client1_0_0_0_0 = xmlrpclib.Server('http://192.168.1.23:1234')
+        self.xmlrpc_client1_1 = xmlrpclib.Server('http://192.168.1.10:1234')
+        self.xmlrpc_client1_0_1 = xmlrpclib.Server('http://192.168.1.10:1234')
+        self.xmlrpc_client1_0_0_1 = xmlrpclib.Server('http://192.168.1.10:1234')
+        self.xmlrpc_client1_0_0_0_0 = xmlrpclib.Server('http://192.168.1.10:1234')
         self._tx_gain_range = Range(1, 89, 1, 10, 200)
         self._tx_gain_win = RangeWidget(self._tx_gain_range, self.set_tx_gain, 'tx gain', "counter_slider", float)
         self.top_grid_layout.addWidget(self._tx_gain_win, 0, 2, 1, 1)

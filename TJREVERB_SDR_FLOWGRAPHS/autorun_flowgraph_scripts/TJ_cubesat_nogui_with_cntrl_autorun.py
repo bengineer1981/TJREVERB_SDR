@@ -5,7 +5,7 @@
 # Title: TJ Cubesat No Gui
 # Author: Thomas Jefferson High School
 # Description: TJ Reverb Headless Cubesat Simulator with Message Loopback
-# Generated: Wed Feb  6 00:33:14 2019
+# Generated: Wed Feb  6 00:33:29 2019
 ##################################################
 
 import os
@@ -22,12 +22,14 @@ from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
+import SimpleXMLRPCServer
 import afsk
 import bruninga
+import threading
 import time
 
 
-class TJ_cubesat_nogui(gr.top_block):
+class TJ_cubesat_nogui_with_cntrl_autorun(gr.top_block):
 
     def __init__(self):
         gr.top_block.__init__(self, "TJ Cubesat No Gui")
@@ -55,6 +57,11 @@ class TJ_cubesat_nogui(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
+        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('', 1234), allow_none=True)
+        self.xmlrpc_server_0.register_instance(self)
+        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
+        self.xmlrpc_server_0_thread.daemon = True
+        self.xmlrpc_server_0_thread.start()
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -256,15 +263,10 @@ class TJ_cubesat_nogui(gr.top_block):
         self.detectMarkSpace_0_0.set_attack(self.Attack)
 
 
-def main(top_block_cls=TJ_cubesat_nogui, options=None):
+def main(top_block_cls=TJ_cubesat_nogui_with_cntrl_autorun, options=None):
 
     tb = top_block_cls()
     tb.start()
-    try:
-        raw_input('Press Enter to quit: ')
-    except EOFError:
-        pass
-    tb.stop()
     tb.wait()
 
 

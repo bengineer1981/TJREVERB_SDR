@@ -150,7 +150,8 @@
       <key>comment</key>
       <value>this should be the IP address of the cubesat's
 network-facing IP interface
-only use 'localhost' if testing controller
+only use 'localhost' if testing this 
+controller script and the cubesat's
 flowgraph on same machine</value>
     </param>
     <param>
@@ -171,7 +172,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>value</key>
-      <value>"192.168.1.23"</value>
+      <value>"192.168.1.10"</value>
     </param>
   </block>
   <block>
@@ -474,7 +475,7 @@ flowgraph on same machine</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 228)</value>
+      <value>(872, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
